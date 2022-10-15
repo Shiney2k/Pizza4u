@@ -11,9 +11,11 @@
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:contentDescription="@string/app_icon_description"
+        app:layout_constraintBottom_toTopOf="@+id/textCopyright"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appTitleText"
+        app:layout_constraintVertical_bias="0.110000014"
         app:srcCompat="@drawable/app_icon" />
 
     <TextView
@@ -33,7 +35,7 @@
     <Button
         android:id="@+id/buttonSignIn"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="60dp"
         android:backgroundTint="#F57C00"
         android:text="@string/button_sign_in"
@@ -44,7 +46,7 @@
     <Button
         android:id="@+id/buttonSignUp"
         android:layout_width="300dp"
-        android:layout_height="wrap_content"
+        android:layout_height="48dp"
         android:layout_marginTop="20dp"
         android:backgroundTint="?android:attr/colorBackground"
         android:text="@string/button_sign_up"

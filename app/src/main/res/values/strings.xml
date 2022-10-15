@@ -8,4 +8,17 @@
     <string name="button_recover_password">Recover password</string>
     <string name="text_copyright">©Pizza4u 2022 - All Rights Reserved</string>
     <string name="text_app_version">Version 1.0</string>
+    <string name="text_sign_up_title">Sign Up</string>
+    <string name="edit_text_first_name">First Name</string>
+    <string name="edit_text_last_name">Last Name</string>
+    <string name="edit_text_email">Email</string>
+    <string name="edit_text_phone">Phone</string>
+    <string name="edit_text_password">Password</string>
+    <string name="edit_text_branch_id">Branch ID</string>
+    <string name="edit_text_employee_id">Employee ID</string>
+    <string name="button_add_profile_picture">Add profile picture</string>
+    <string name="menu_title_customer">Customer</string>
+    <string name="menu_title_manager">Manager</string>
+    <string name="button_create_account">Create account</string>
+    <string name="button_cancel">Cancel</string>
 </resources>
