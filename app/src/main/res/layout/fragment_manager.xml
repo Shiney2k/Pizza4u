@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="40dp"
-                android:text="@string/text_sign_up_title"
+                android:text="@string/text_sign_up_manager"
                 android:textSize="24sp" />
 
             <EditText
