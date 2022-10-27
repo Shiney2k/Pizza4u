@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="item_home">Home</string>
+    <string name="item_cart">Cart</string>
+    <string name="item_orders">Orders</string>
+    <string name="item_profile">Profile</string>
+    <string name="pizza_type_view">Non-Veg Pizza</string>
+    <string name="cus_profile_heading">My Profile</string>
+    <string name="name_hint">Name</string>
+    <string name="phone_hint">Phone</string>
+    <string name="mail_hint">Email</string>
+    <string name="text_pizza">BBQ Chicken</string>
+    <string name="pizza_description">Pepped Texas BBQ Chicken, Mango BBQ Source, Herb Tomato blend, 100% real mozzarella</string>
+</resources>
