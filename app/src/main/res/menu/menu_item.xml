@@ -12,5 +12,4 @@
     <item android:id="@+id/profile"
         android:title="@string/item_profile"
         android:icon="@drawable/icon_account"/>
-
 </menu>
