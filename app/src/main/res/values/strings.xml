@@ -1,5 +1,23 @@
 <resources>
     <string name="app_name">Pizza4u</string>
+    <string name="customer_registration">Customer Registration</string>
+    <string name="customer_name">Customer Name</string>
+    <string name="customer_id">Customer ID</string>
+    <string name="phone_number">Phone Number</string>
+    <string name="email">Email</string>
+    <string name="employee_registration">Employee Registration</string>
+
+    <string name="employee_registation">Employee Registation</string>
+    <string name="employee_id">Employee ID</string>
+    <string name="employee_name">Employee Name</string>
+    <string name="number">Number</string>
+    <string name="emailll">Email</string>
+    <string name="psssword">Password</string>
+    <string name="save">Save</string>
+    <string name="exit">Exit</string>
+    <string name="sign_in">Sign In</string>
+    <string name="sign_up">Sign Up</string>
+
     <string name="app_title">Pizza4u</string>
     <string name="app_icon_description">Pizza4uIcon</string>
     <string name="button_sign_in">Sign In</string>
