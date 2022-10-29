@@ -28,6 +28,21 @@
     <string name="button_recover_password">Recover password</string>
     <string name="text_copyright">©Pizza4u 2022 - All Rights Reserved</string>
     <string name="text_app_version">Version 1.0</string>
+
+    <string name="manager">Manager</string>
+    <string name="managericon">managerIcon</string>
+    <string name="add_customer">Add Customer</string>
+    <string name="add_employee">Add Employee</string>
+    <string name="add_menu">Add Menu</string>
+    <string name="employee_id">Employee Id</string>
+    <string name="first_name">First Name</string>
+    <string name="branch_id">Branch Id</string>
+    <string name="last_name">Last Name</string>
+    <string name="employee_registration">Employee Registration</string>
+    <string name="phone">phone</string>
+    <string name="email">Email</string>
+    <string name="passward">Passward</string>
+
     <string name="text_view_cushome_description">Let\'s start your order now!</string>
     <string name="text_pizza_type">Non-Veg Pizza</string>
     <string name="item_home">Home</string>
