@@ -4,11 +4,8 @@
     <string name="customer_name">Customer Name</string>
     <string name="customer_id">Customer ID</string>
     <string name="phone_number">Phone Number</string>
-    <string name="email">Email</string>
-    <string name="employee_registration">Employee Registration</string>
 
     <string name="employee_registation">Employee Registation</string>
-    <string name="employee_id">Employee ID</string>
     <string name="employee_name">Employee Name</string>
     <string name="number">Number</string>
     <string name="emailll">Email</string>
