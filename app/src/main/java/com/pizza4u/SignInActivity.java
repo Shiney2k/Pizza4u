@@ -25,6 +25,7 @@ import java.util.Map;
 public class SignInActivity extends AppCompatActivity {
 
     Button buttonSignIn;
+    Button buttonCancelSignIn;
     EditText editTextEmail;
     EditText editTextPassword;
 
@@ -34,6 +35,7 @@ public class SignInActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in);
 
         buttonSignIn = findViewById(R.id.buttonSignIn2);
+        buttonCancelSignIn = findViewById(R.id.buttonCancelSignIn);
         editTextEmail = findViewById(R.id.editTextEmailSignIn);
         editTextPassword = findViewById(R.id.editTextPasswordSignIn);
 
@@ -56,6 +58,8 @@ public class SignInActivity extends AppCompatActivity {
                                             // Log.d("Email", email);
 
                                             if(document.get("password").toString().equals(editTextPassword.getText().toString().trim())) {
+                                                editTextEmail.setText("");
+                                                editTextPassword.setText("");
                                                 switch (document.get("acctype").toString()) {
                                                     case "Customer":
                                                         Intent intent1 = new Intent(SignInActivity.this, CustomerMainActivity.class);
@@ -103,6 +107,32 @@ public class SignInActivity extends AppCompatActivity {
                                 }
                             }
                         });
+            }
+        });
+
+        buttonCancelSignIn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                Intent intent = new Intent(SignInActivity.this,MainActivity.class);
+                                startActivity(intent);
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setMessage("Are you sure you want to cancel?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
             }
         });
     }
