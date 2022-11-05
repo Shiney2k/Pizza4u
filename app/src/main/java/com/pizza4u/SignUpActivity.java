@@ -1,20 +1,19 @@
 package com.pizza4u;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.os.Bundle;
-import android.widget.Button;
-import android.widget.EditText;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
 public class SignUpActivity extends AppCompatActivity {
 
-    EditText branchId;
-    EditText employeeId;
-    Button addProfilePicture;
     BottomNavigationView bottomNav;
 
     @Override
@@ -25,11 +24,13 @@ public class SignUpActivity extends AppCompatActivity {
         bottomNav = findViewById(R.id.bottom_navigation);
         bottomNav.setOnItemSelectedListener(navListener);
 
-        branchId = findViewById(R.id.editTextBranchId);
-        employeeId = findViewById(R.id.editTextEmployeeId);
-        addProfilePicture = findViewById(R.id.buttonAddProfilePicture);
+        if(ContextCompat.checkSelfPermission(SignUpActivity.this, Manifest.permission.CAMERA)
+                != PackageManager.PERMISSION_GRANTED) {
+            ActivityCompat.requestPermissions(SignUpActivity.this,
+                    new String[]{Manifest.permission.CAMERA}, 0);
+        }
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new CustomerFragment()).commit();
+        getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragment_container, new CustomerFragment()).commit();
     }
 
     private final NavigationBarView.OnItemSelectedListener navListener = item -> {
@@ -42,7 +43,7 @@ public class SignUpActivity extends AppCompatActivity {
         }
 
             if (selectedFragment != null) {
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, selectedFragment).commit();
+                getSupportFragmentManager().beginTransaction().setReorderingAllowed(true).replace(R.id.fragment_container, selectedFragment).commit();
             }
             return true;
     };

@@ -10,7 +10,6 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:fontFamily="serif"
         android:text="@string/employee_registation"
         android:textAlignment="center"
@@ -18,28 +17,27 @@
         android:textSize="30sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.043"
-        app:layout_constraintWidth_percent=".8"/>
+        app:layout_constraintWidth_percent=".8" />
 
     <EditText
-        android:layout_width="0dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="128dp"
         android:backgroundTint="@color/white"
+        android:drawablePadding="13dp"
         android:hint="@string/employee_id"
         android:inputType="text"
-        android:drawablePadding="13dp"
         android:textColorHint="@color/white"
-        app:layout_constrainedWidth_percent=".6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:layout_width="0dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="188dp"
         android:backgroundTint="@color/white"
@@ -47,14 +45,12 @@
         android:hint="@string/employee_name"
         android:inputType="text"
         android:textColorHint="@color/white"
-        app:layout_constrainedWidth_percent=".6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:layout_width="0dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="248dp"
         android:backgroundTint="@color/white"
@@ -62,29 +58,25 @@
         android:hint="@string/number"
         android:inputType="text"
         android:textColorHint="@color/white"
-        app:layout_constrainedWidth_percent=".6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:layout_width="0dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
+        android:layout_marginTop="292dp"
         android:backgroundTint="@color/white"
         android:drawablePadding="13dp"
         android:hint="@string/emailll"
         android:inputType="text"
         android:textColorHint="@color/white"
-        app:layout_constrainedWidth_percent=".6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:layout_width="0dp"
+        android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="356dp"
         android:backgroundTint="@color/white"
@@ -92,9 +84,7 @@
         android:hint="@string/psssword"
         android:inputType="textPassword"
         android:textColorHint="@color/white"
-        app:layout_constrainedWidth_percent=".6"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 

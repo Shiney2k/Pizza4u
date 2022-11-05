@@ -22,7 +22,7 @@
             android:orientation="vertical">
 
             <TextView
-                android:id="@+id/textSignUpTitle"
+                android:id="@+id/textSignUpTitleManager"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="40dp"
@@ -31,7 +31,7 @@
                 android:textSize="24sp" />
 
             <EditText
-                android:id="@+id/editTextFirstName"
+                android:id="@+id/editTextFirstNameManager"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -41,7 +41,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editTextLastName"
+                android:id="@+id/editTextLastNameManager"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -51,7 +51,7 @@
                 android:inputType="textPersonName" />
 
             <EditText
-                android:id="@+id/editTextEmail"
+                android:id="@+id/editTextEmailManager"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -61,7 +61,7 @@
                 android:inputType="textEmailAddress" />
 
             <EditText
-                android:id="@+id/editTextPhone"
+                android:id="@+id/editTextPhoneManager"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -71,7 +71,7 @@
                 android:inputType="phone" />
 
             <EditText
-                android:id="@+id/editTextPassword"
+                android:id="@+id/editTextPasswordManager"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -81,7 +81,7 @@
                 android:inputType="textPassword" />
 
             <EditText
-                android:id="@+id/editTextBranchId"
+                android:id="@+id/editTextBranchIdManager"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -91,7 +91,7 @@
                 android:inputType="numberDecimal" />
 
             <EditText
-                android:id="@+id/editTextEmployeeId"
+                android:id="@+id/editTextEmployeeIdManager"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -101,7 +101,7 @@
                 android:inputType="numberDecimal" />
 
             <Button
-                android:id="@+id/buttonAddProfilePicture"
+                android:id="@+id/buttonAddProfilePictureManager"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
@@ -111,18 +111,28 @@
                 android:textColor="?android:attr/textColorTertiary"
                 app:rippleColor="?android:attr/colorActivatedHighlight" />
 
+            <ImageView
+                android:id="@+id/profilepicManager"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/manager_icon" />
+
             <Button
-                android:id="@+id/buttonCreateAccount"
+                android:id="@+id/buttonCreateAccountManager"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
+                android:backgroundTint="@color/colorPrimary"
                 android:text="@string/button_create_account"
+                android:textColor="@color/colorOnPrimary"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent" />
 
             <Button
-                android:id="@+id/buttonCancel"
+                android:id="@+id/buttonCancelManager"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"

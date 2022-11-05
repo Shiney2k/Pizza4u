@@ -1,12 +1,42 @@
 package com.pizza4u;
 
+import static android.app.Activity.RESULT_OK;
+import static android.content.ContentValues.TAG;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AlertDialog;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
+
+import com.google.android.gms.tasks.Continuation;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
+
+import java.io.ByteArrayOutputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -14,6 +44,22 @@ import android.view.ViewGroup;
  * create an instance of this fragment.
  */
 public class ManagerFragment extends Fragment {
+
+    EditText editTextFirstNameManager;
+    EditText editTextLastNameManager;
+    EditText editTextEmailManager;
+    EditText editTextPhoneManager;
+    EditText editTextPasswordManager;
+    EditText editTextBranchIdManager;
+    EditText editTextEmployeeIdManager;
+    Button buttonAddProfilePictureManager;
+    Button buttonCreateAccountManager;
+    Button buttonCancelManager;
+    ImageView profilepicManager;
+
+    Bitmap image;
+    Uri selectedImage;
+    String profilepicUri;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,5 +106,243 @@ public class ManagerFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_manager, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        editTextFirstNameManager = view.findViewById(R.id.editTextFirstNameManager);
+        editTextLastNameManager = view.findViewById(R.id.editTextLastNameManager);
+        editTextEmailManager = view.findViewById(R.id.editTextEmailManager);
+        editTextPhoneManager = view.findViewById(R.id.editTextPhoneManager);
+        editTextPasswordManager = view.findViewById(R.id.editTextPasswordManager);
+        editTextBranchIdManager = view.findViewById(R.id.editTextBranchIdManager);
+        editTextEmployeeIdManager = view.findViewById(R.id.editTextEmployeeIdManager);
+        buttonAddProfilePictureManager = view.findViewById(R.id.buttonAddProfilePictureManager);
+        buttonCreateAccountManager = view.findViewById(R.id.buttonCreateAccountManager);
+        buttonCancelManager = view.findViewById(R.id.buttonCancelManager);
+        profilepicManager = view.findViewById(R.id.profilepicManager);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+
+        buttonCancelManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                Intent intent = new Intent(getContext(),MainActivity.class);
+                                startActivity(intent);
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext());
+                builder.setMessage("Are you sure you want to cancel?").setPositiveButton("Yes", dialogClickListener)
+                        .setNegativeButton("No", dialogClickListener).show();
+            }
+        });
+
+        buttonAddProfilePictureManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                Intent pickPhoto = new Intent(Intent.ACTION_PICK,
+                                        android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
+                                startActivityForResult(pickPhoto , 1);
+                                break;
+
+                            case DialogInterface.BUTTON_NEGATIVE:
+                                //No button clicked
+                                Intent takePicture = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+                                startActivityForResult(takePicture, 0);
+                                break;
+
+                            case DialogInterface.BUTTON_NEUTRAL:
+                                dialog.cancel();
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setMessage("Select image from gallery or capture from camera?").setPositiveButton("Gallery", dialogClickListener)
+                        .setNegativeButton("Camera", dialogClickListener).setNeutralButton("Cancel",dialogClickListener).show();
+            }
+        });
+
+        buttonCreateAccountManager.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(image != null || selectedImage != null) {
+                    StorageReference storageRef = storage.getReference();
+                    StorageReference profilepicRef = storageRef.child(editTextEmailManager.getText().toString().trim() + "/profilepic.jpg");
+
+                    if(image != null) {
+                        ByteArrayOutputStream baos = new ByteArrayOutputStream();
+                        image.compress(Bitmap.CompressFormat.JPEG, 100, baos);
+                        byte[] imageData = baos.toByteArray();
+
+                        UploadTask uploadTask = profilepicRef.putBytes(imageData);
+                        Task<Uri> urlTask = uploadTask.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                e.printStackTrace();
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                long size = taskSnapshot.getMetadata().getSizeBytes();
+                                Log.d(TAG, "Image uploaded to Firebase Storage: " + size);
+                            }
+                        }).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                            @Override
+                            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                if (!task.isSuccessful()) {
+                                    throw task.getException();
+                                }
+                                return profilepicRef.getDownloadUrl();
+                            }
+                        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                if (task.isSuccessful()) {
+                                    Uri downloadUri = task.getResult();
+                                    profilepicUri = String.valueOf(downloadUri);
+                                    Log.d("Profile picture download uri: ", profilepicUri);
+                                } else {
+                                    Log.d(TAG, "Failed to get image download URL");
+                                }
+                            }
+                        });
+                    } else if(selectedImage != null) {
+                        UploadTask uploadTask = profilepicRef.putFile(selectedImage);
+                        Task<Uri> urlTask = uploadTask.addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                e.printStackTrace();
+                            }
+                        }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+                            @Override
+                            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                                long size = taskSnapshot.getMetadata().getSizeBytes();
+                                Log.d(TAG, "Image uploaded to Firebase Storage: " + size);
+                            }
+                        }).continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
+                            @Override
+                            public Task<Uri> then(@NonNull Task<UploadTask.TaskSnapshot> task) throws Exception {
+                                if (!task.isSuccessful()) {
+                                    throw task.getException();
+                                }
+                                return profilepicRef.getDownloadUrl();
+                            }
+                        }).addOnCompleteListener(new OnCompleteListener<Uri>() {
+                            @Override
+                            public void onComplete(@NonNull Task<Uri> task) {
+                                if (task.isSuccessful()) {
+                                    Uri downloadUri = task.getResult();
+                                    profilepicUri = String.valueOf(downloadUri);
+                                    Log.d("Profile picture download uri: ", profilepicUri);
+                                } else {
+                                    Log.d(TAG, "Failed to get image download URL");
+                                }
+                            }
+                        });
+                    }
+                }
+
+                Map<String, Object> data = new HashMap<>();
+                data.put("acctype", "Manager");
+                data.put("fname", editTextFirstNameManager.getText().toString().trim());
+                data.put("lname", editTextLastNameManager.getText().toString().trim());
+                data.put("email", editTextEmailManager.getText().toString().trim());
+                data.put("phone", editTextPhoneManager.getText().toString().trim());
+                data.put("password", editTextPasswordManager.getText().toString().trim());
+                data.put("branchid", editTextBranchIdManager.getText().toString().trim());
+                data.put("employeeid", editTextEmployeeIdManager.getText().toString().trim());
+                data.put("profilepic", profilepicUri);
+
+                db.collection("users").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which){
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        //Yes button clicked
+                                        Intent intent = new Intent(getContext(),MainActivity.class);
+                                        startActivity(intent);
+                                        break;
+                                }
+                            }
+                        };
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                        builder.setMessage("Account created successfully.").setPositiveButton("Ok", dialogClickListener)
+                                .show();
+                    }
+                }).addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        Log.w(TAG, "Error adding document", e);
+                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            @Override
+                            public void onClick(DialogInterface dialog, int which) {
+                                switch (which){
+                                    case DialogInterface.BUTTON_POSITIVE:
+                                        break;
+                                }
+                            }
+                        };
+
+                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                        builder.setTitle("Failed to create account.").setMessage("Error: " + String.valueOf(e)).setPositiveButton("Ok", dialogClickListener)
+                                .show();
+                    }
+                });
+            }
+        });
+    }
+
+    public void onActivityResult(int requestCode, int resultCode, Intent imageReturnedIntent) {
+        super.onActivityResult(requestCode, resultCode, imageReturnedIntent);
+        switch(requestCode) {
+            case 0:
+                if(resultCode == RESULT_OK){
+//                    selectedImage = imageReturnedIntent.getData();
+//                    profilepicManager.setImageURI(selectedImage);
+
+                    image = (Bitmap) imageReturnedIntent.getExtras().get("data");
+                    profilepicManager.setImageBitmap(image);
+                }
+
+                break;
+            case 1:
+                if(resultCode == RESULT_OK){
+                    selectedImage = imageReturnedIntent.getData();
+                    profilepicManager.setImageURI(selectedImage);
+
+//                    image = (Bitmap) imageReturnedIntent.getExtras().get("data");
+//                    profilepicManager.setImageBitmap(image);
+                }
+                break;
+        }
     }
 }

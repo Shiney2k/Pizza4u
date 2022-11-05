@@ -40,18 +40,18 @@
                 android:layout_marginTop="10dp">
 
 
-                <com.mikhaellopez.circularimageview.CircularImageView
-                    android:id="@+id/imgProfilePic"
-                    android:layout_width="142dp"
-                    android:layout_height="142dp"
-                    android:layout_gravity="center"
-                    android:layout_marginStart="130dp"
-                    android:src="@drawable/profile_pic"
-                    app:civ_border_color="#FF5722"
-                    app:civ_border_width="4dp"
-                    app:civ_shadow="true"
-                    app:civ_shadow_color="#FF9800"
-                    app:civ_shadow_radius="10dp" />
+<!--                <com.mikhaellopez.circularimageview.CircularImageView-->
+<!--                    android:id="@+id/imgProfilePic"-->
+<!--                    android:layout_width="142dp"-->
+<!--                    android:layout_height="142dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginStart="130dp"-->
+<!--                    android:src="@drawable/profile_pic"-->
+<!--                    app:civ_border_color="#FF5722"-->
+<!--                    app:civ_border_width="4dp"-->
+<!--                    app:civ_shadow="true"-->
+<!--                    app:civ_shadow_color="#FF9800"-->
+<!--                    app:civ_shadow_radius="10dp" />-->
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnEditProPic"
