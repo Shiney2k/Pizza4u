@@ -46,46 +46,19 @@
         tools:layout_editor_absoluteY="213dp"
         tools:ignore="MissingConstraints" />
 
-    <HorizontalScrollView
-        android:layout_width="409dp"
-        android:layout_height="231dp"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="388dp"
-        tools:ignore="MissingConstraints">
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/pizza_regular" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-    <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/pizza_medium" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-     <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/pizza_large" />
-
-        </LinearLayout>
+    <TextView
+        android:id="@+id/textDescription_pizzaView"
+        android:layout_width="378dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="392dp"
+        android:text="Description about the pizza"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPizzaName" />
 
     <Spinner
         android:id="@+id/spinner_p_size"

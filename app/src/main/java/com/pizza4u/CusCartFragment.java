@@ -26,17 +26,12 @@ public class CusCartFragment extends Fragment {
     private Button btnOrder;
     //private DatabaseHelper newDB;
 
-public class CusCartFragment extends Fragment {
 
     public CusCartFragment() {
         // Required empty public constructor
     }
 
-   public static CusCartFragment newInstance(String param1, String param2) {
-        CusCartFragment fragment = new CusCartFragment();
-        Bundle args = new Bundle();
-
-public static CusCartFragment newInstance(String param1, String param2) {
+  public static CusCartFragment newInstance(String param1, String param2) {
         CusCartFragment fragment = new CusCartFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
