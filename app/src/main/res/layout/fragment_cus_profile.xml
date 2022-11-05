@@ -39,7 +39,6 @@
                 android:gravity="center_horizontal"
                 android:layout_marginTop="10dp">
 
-
 <!--                <com.mikhaellopez.circularimageview.CircularImageView-->
 <!--                    android:id="@+id/imgProfilePic"-->
 <!--                    android:layout_width="142dp"-->
@@ -51,7 +50,17 @@
 <!--                    app:civ_border_width="4dp"-->
 <!--                    app:civ_shadow="true"-->
 <!--                    app:civ_shadow_color="#FF9800"-->
-<!--                    app:civ_shadow_radius="10dp" />-->
+<!--                    app:civ_shadow_radius="10dp"/>-->
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgProfilePic"
+                    android:layout_width="142dp"
+                    android:layout_height="142dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="130dp"
+                    android:src="@drawable/profile_pic"
+                    app:civ_border_color="@color/colorPrimary"
+                    app:civ_border_width="4dp"/>
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/btnEditProPic"
@@ -63,9 +72,7 @@
                     android:minHeight="48dp"
                     android:src="@drawable/icon_edit"
                     tools:ignore="ExtraText" />
-
             </LinearLayout>
-
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -146,6 +153,19 @@
                     android:text="@string/location"
                     android:layout_gravity="center_vertical"
                     android:textSize="15dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/maps_userLocation"
+                    android:layout_width="400dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/order_location" />
 
             </LinearLayout>
 

@@ -16,5 +16,6 @@
     <string name="totallbl">Total</string>
     <string name="totPrice">4500</string>
     <string name="chnge_loction">Change Location</string>
+    <string name="order_location">Order Location</string>
 
 </resources>

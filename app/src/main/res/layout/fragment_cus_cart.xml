@@ -20,8 +20,8 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="CART"
-                android:layout_marginTop="10dp"/>
+                android:layout_marginTop="10dp"
+                android:text="CART" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_cart"
@@ -33,8 +33,8 @@
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
-                android:layout_marginTop="10dp"
                 android:layout_height="54dp"
+                android:layout_marginTop="10dp"
                 android:backgroundTint="#E8E7E6">
 
                 <TextView
@@ -55,6 +55,36 @@
                     android:text="@string/txt_pricetotcart"
                     android:textSize="18dp" />
             </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:text="Change Order Location"
+                    android:textSize="15dp" />
+
+                <ImageButton
+                    android:id="@+id/btnChangeLocation"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="5dp"
+                    android:contentDescription="@string/chnge_loction"
+                    android:src="@drawable/icon_location"
+                    android:tooltipText="@string/totallbl" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/maps_orderLocation"
+                android:layout_width="400dp"
+                android:layout_height="50dp"
+                android:layout_marginStart="5dp"
+                android:contentDescription="@string/order_location" />
 
             <Button
                 android:id="@+id/btnPlaceOrder"
