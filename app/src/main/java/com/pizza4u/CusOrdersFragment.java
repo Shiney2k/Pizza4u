@@ -23,7 +23,7 @@ public class CusOrdersFragment extends Fragment {
 
     private View view;
     private RecyclerView recyclerView;
-    private ArrayList orderid,price,date,status;
+    private ArrayList orderid, price, date, status;
     private OrdersRecycleAdapter ordersRecycleAdapter;
     //private DatabaseHelper newDB;
 
@@ -34,7 +34,7 @@ public class CusOrdersFragment extends Fragment {
     public static CusOrdersFragment newInstance(String param1, String param2) {
         CusOrdersFragment fragment = new CusOrdersFragment();
         Bundle args = new Bundle();
-    
+
         fragment.setArguments(args);
         return fragment;
     }
@@ -43,7 +43,7 @@ public class CusOrdersFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            }
+        }
     }
 
     @Override
@@ -56,7 +56,7 @@ public class CusOrdersFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        recyclerView=view.findViewById(R.id.recycler_orders);
+        recyclerView = view.findViewById(R.id.recycler_orders);
 
         //newDB = new DatabaseHelper(MedicalNotesActivity.this);
         orderid = new ArrayList<>();
@@ -66,7 +66,7 @@ public class CusOrdersFragment extends Fragment {
 
         displayData();
 
-        ordersRecycleAdapter = new OrdersRecycleAdapter(getContext(),orderid,price,status,date);
+        ordersRecycleAdapter = new OrdersRecycleAdapter(getContext(), orderid, price, status, date);
         recyclerView.setAdapter(ordersRecycleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
@@ -86,5 +86,4 @@ public class CusOrdersFragment extends Fragment {
 //            imgNoNotes.setVisibility(View.GONE);
 //            txtNoNotes.setVisibility(View.GONE);
     }
-
 }

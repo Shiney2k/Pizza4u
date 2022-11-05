@@ -118,6 +118,7 @@ public class CustomerFragment extends Fragment {
         buttonAddProfilePictureCustomer = view.findViewById(R.id.buttonAddProfilePictureCustomer);
         buttonCreateAccountCustomer = view.findViewById(R.id.buttonCreateAccountCustomer);
         buttonCancelCustomer = view.findViewById(R.id.buttonCancelCustomer);
+        profilepicCustomer = view.findViewById(R.id.profilepicManager);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseStorage storage = FirebaseStorage.getInstance();
