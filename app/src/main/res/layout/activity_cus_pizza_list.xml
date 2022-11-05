@@ -4,10 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".CusPizzaListActivity">
+    tools:context=".CusPizzaListActivity"
+    tools:ignore="ExtraText">
 
     <TextView
-        android:id="@+id/textH"
+        android:id="@+id/textPListType"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
@@ -15,7 +16,7 @@
         android:fadingEdgeLength="5dp"
         android:fontFamily="sans-serif-condensed-light"
         android:padding="3dp"
-        android:text="@string/text_view_cushome_description"
+        android:text="@string/txt_plist_type"
         android:textAlignment="center"
         android:textAllCaps="true"
         app:layout_constraintBottom_toTopOf="@+id/recyclerPList"
@@ -23,7 +24,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.recyclerview.widget.RecyclerView
+    +<androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerPList"
         android:layout_width="396dp"
         android:layout_height="655dp"

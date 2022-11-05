@@ -46,49 +46,62 @@
         tools:layout_editor_absoluteY="213dp"
         tools:ignore="MissingConstraints" />
 
-    <HorizontalScrollView
-        android:layout_width="409dp"
-        android:layout_height="231dp"
-        tools:layout_editor_absoluteX="5dp"
-        tools:layout_editor_absoluteY="388dp"
-        tools:ignore="MissingConstraints">
+    <TextView
+        android:id="@+id/textDescription_pizzaView"
+        android:layout_width="378dp"
+        android:layout_height="73dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="392dp"
+        android:text="Description about the pizza"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtPizzaName" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+    <Spinner
+        android:id="@+id/spinner_p_size"
+        android:layout_width="216dp"
+        android:layout_height="48dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="12dp"
+        android:layout_marginBottom="298dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textView2"
+        app:layout_constraintTop_toBottomOf="@+id/textDescription_pizzaView"
+        app:layout_constraintVertical_bias="1.0" />
 
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/pizza_regular" />
-        </LinearLayout>
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="125dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="57dp"
+        android:layout_marginEnd="18dp"
+        android:layout_marginBottom="307dp"
+        android:text="Size"
+        android:textSize="17dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/spinner_p_size"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDescription_pizzaView"
+        app:layout_constraintVertical_bias="1.0" />
 
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/pizza_medium" />
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/pizza_large" />
-
-        </LinearLayout>
-
-
-    </HorizontalScrollView>
-
+    <Button
+        android:id="@+id/btn_addtoCart"
+        android:layout_width="138dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="145dp"
+        android:layout_marginTop="121dp"
+        android:layout_marginEnd="128dp"
+        android:layout_marginBottom="134dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/spinner_p_size"
+        tools:text="Add To Cart" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

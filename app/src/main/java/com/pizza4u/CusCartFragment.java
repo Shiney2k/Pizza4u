@@ -3,45 +3,42 @@ package com.pizza4u;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CusCartFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
 public class CusCartFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private View view;
+    private RecyclerView recyclerView;
+    private ArrayList name,price,count;
+    private CartRecycleAdapter cartRecycleAdapter;
+    private TextView txttot;
+    private Button btnOrder;
+    //private DatabaseHelper newDB;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+public class CusCartFragment extends Fragment {
 
     public CusCartFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CusCartFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static CusCartFragment newInstance(String param1, String param2) {
+   public static CusCartFragment newInstance(String param1, String param2) {
         CusCartFragment fragment = new CusCartFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+
+public static CusCartFragment newInstance(String param1, String param2) {
+        CusCartFragment fragment = new CusCartFragment();
+        Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,20 +47,51 @@ public class CusCartFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+
         }
     }
 
-
-
-    View view;
-
+ 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         view = inflater.inflate(R.layout.fragment_cus_cart, container, false);
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerView = view.findViewById(R.id.recycler_cart);
+        txttot = view.findViewById(R.id.textTotal);
+        btnOrder=view.findViewById(R.id.btnPlaceOrder);
+
+        //newDB = new DatabaseHelper(MedicalNotesActivity.this);
+        name = new ArrayList<>();
+        price = new ArrayList<>();
+        count = new ArrayList<>();
+
+        //Cursor cursor = newDB.displayNotes(Integer.valueOf(MainActivity.id.get(0)));
+//            imgNoNotes.setVisibility(View.VISIBLE);
+//            txtNoNotes.setVisibility(View.VISIBLE);
+//        } else {
+//            while(cursor.moveToNext()){
+//                name.add(cursor.getString(0));
+//                price.add(cursor.getString(1));
+//                count.add(cursor.getString(2));
+//            }
+//            imgNoNotes.setVisibility(View.GONE);
+//            txtNoNotes.setVisibility(View.GONE);
+//            }
+
+        btnOrder.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+            }
+        });
+
     }
 }

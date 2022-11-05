@@ -1,47 +1,40 @@
 package com.pizza4u;
 
+import androidx.fragment.app.Fragment;
+import android.database.Cursor;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link CusOrdersFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
+
 public class CusOrdersFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private View view;
+    private RecyclerView recyclerView;
+    private ArrayList orderid,price,date,status;
+    private OrdersRecycleAdapter ordersRecycleAdapter;
+    //private DatabaseHelper newDB;
 
     public CusOrdersFragment() {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment CusOrdersFragment.
-     */
-    // TODO: Rename and change types and number of parameters
     public static CusOrdersFragment newInstance(String param1, String param2) {
         CusOrdersFragment fragment = new CusOrdersFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+    
         fragment.setArguments(args);
         return fragment;
     }
@@ -50,22 +43,50 @@ public class CusOrdersFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+            }
     }
-
-
-
-
-
-    View view;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        view = inflater.inflate(R.layout.fragment_cus_orders, container, false);
-        return  view;
+        return inflater.inflate(R.layout.fragment_cus_orders, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        recyclerView=view.findViewById(R.id.recycler_orders);
+
+        //newDB = new DatabaseHelper(MedicalNotesActivity.this);
+        orderid = new ArrayList<>();
+        price = new ArrayList<>();
+        status = new ArrayList<>();
+        date = new ArrayList<>();
+
+        displayData();
+
+        ordersRecycleAdapter = new OrdersRecycleAdapter(getContext(),orderid,price,status,date);
+        recyclerView.setAdapter(ordersRecycleAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+
+    }
+
+    private void displayData() {
+//        Cursor cursor = newDB.displayNotes(Integer.valueOf(MainActivity.id.get(0)));
+//            imgNoNotes.setVisibility(View.VISIBLE);
+//            txtNoNotes.setVisibility(View.VISIBLE);
+//        } else {
+//            while(cursor.moveToNext()){
+//                orderid.add(cursor.getString(0));
+//                price.add(cursor.getString(1));
+//                date.add(cursor.getString(2));
+//                status.add(cursor.getString(3));
+//            }
+//            imgNoNotes.setVisibility(View.GONE);
+//            txtNoNotes.setVisibility(View.GONE);
+    }
+
+        }
     }
 }

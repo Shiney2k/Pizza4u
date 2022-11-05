@@ -46,6 +46,7 @@
     <string name="item_cart">Cart</string>
     <string name="item_orders">Orders</string>
     <string name="item_profile">Profile</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="pizza_type_view">Non-Veg Pizza</string>
     <string name="cus_profile_heading">My Profile</string>
@@ -55,6 +56,15 @@
     <string name="location">Location</string>
     <string name="text_pizza">BBQ Chicken</string>
     <string name="pizza_description">Pepped Texas BBQ Chicken, Mango BBQ Source, Herb Tomato blend, 100% real mozzarella</string>
+
+    <string name="txt_plist_type">Non-Veg Pizza</string>
+    <string name="text_pizza_nameCart">BBQ Chicken</string>
+    <string name="orderID">Order 1</string>
+    <string name="totallbl">Total    :</string>
+    <string name="totPrice">4500</string>
+    <string name="chnge_loction">Change Location</string>
+    <string name="txt_pricetotcart">Rs. </string>
+
     <string name="text_sign_up_title">Sign Up</string>
     <string name="edit_text_first_name">First Name</string>
     <string name="edit_text_last_name">Last Name</string>

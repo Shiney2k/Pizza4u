@@ -26,13 +26,14 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_cart"
                 android:layout_width="match_parent"
-                android:layout_height="579dp"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="30dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
+                android:layout_marginTop="10dp"
                 android:layout_height="54dp"
                 android:backgroundTint="#E8E7E6">
 
@@ -40,23 +41,23 @@
                     android:id="@+id/textLblTot"
                     android:layout_width="136dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="170dp"
+                    android:layout_marginStart="130dp"
                     android:layout_marginTop="15dp"
-                    android:textSize="18dp"
-                    android:text="Total      :" />
+                    android:text="Total      :"
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/textTotal"
                     android:layout_width="133dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="270dp"
+                    android:layout_marginStart="210dp"
                     android:layout_marginTop="15dp"
-                    android:textSize="18dp"
-                    android:text="1500" />
+                    android:text="@string/txt_pricetotcart"
+                    android:textSize="18dp" />
             </androidx.cardview.widget.CardView>
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnPlaceOrder"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Place Order" />

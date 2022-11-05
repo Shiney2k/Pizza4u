@@ -11,4 +11,10 @@
     <string name="mail_hint">Email</string>
     <string name="text_pizza">BBQ Chicken</string>
     <string name="pizza_description">Pepped Texas BBQ Chicken, Mango BBQ Source, Herb Tomato blend, 100% real mozzarella</string>
+    <string name="txt_plist_type">Non-Veg Pizza</string>
+    <string name="orderID">Order 1</string>
+    <string name="totallbl">Total</string>
+    <string name="totPrice">4500</string>
+    <string name="chnge_loction">Change Location</string>
+
 </resources>
