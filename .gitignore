@@ -18,3 +18,4 @@ local.properties
 .idea/deploymentTargetDropDown.xml
 .idea/misc.xml
 app/google-services.json
+.idea
