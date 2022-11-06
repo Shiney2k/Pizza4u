@@ -12,10 +12,11 @@ public class UserModel implements Serializable {
     private int branchid;
     private int employeeid;
     private String profilepic;
+    private String userID;
 
     public UserModel() {};
 
-    public UserModel(String acctype, String fname, String lname, String email, int phone, String password, int branchid, int employeeid, String profilepic) {
+    public UserModel(String acctype, String fname, String lname, String email, int phone, String password, int branchid, int employeeid, String profilepic, String userID) {
         this.acctype = acctype;
         this.fname = fname;
         this.lname = lname;
@@ -25,6 +26,7 @@ public class UserModel implements Serializable {
         this.branchid = branchid;
         this.employeeid = employeeid;
         this.profilepic = profilepic;
+        this.userID = userID;
     }
 
     public String getAcctype() {
@@ -97,5 +99,13 @@ public class UserModel implements Serializable {
 
     public void setProfilepic(String profilepic) {
         this.profilepic = profilepic;
+    }
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
     }
 }

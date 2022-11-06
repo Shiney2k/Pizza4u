@@ -31,7 +31,7 @@
         android:id="@+id/editTextBranchName"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="44dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="@string/phone"
         android:inputType="phone"
@@ -39,7 +39,8 @@
         android:text="Branch Name"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:layout_editor_absoluteY="181dp" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textBranchRegistration" />
 
     <EditText
         android:id="@+id/editTextLocationName"
@@ -53,7 +54,6 @@
         android:text="Location Name"
         android:textColorHint="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.278"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editTextBranchName" />
 

@@ -60,6 +60,7 @@ public class ManagerFragment extends Fragment {
     Bitmap image;
     Uri selectedImage;
     String profilepicUri;
+    String userID;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -276,10 +277,12 @@ public class ManagerFragment extends Fragment {
                 data.put("branchid", Integer.parseInt(editTextBranchIdManager.getText().toString().trim()));
                 data.put("employeeid", Integer.parseInt(editTextEmployeeIdManager.getText().toString().trim()));
                 data.put("profilepic", profilepicUri);
+                data.put("userid", userID);
 
                 db.collection("users").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
+                        userID = documentReference.getId();
                         Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
                         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                             @Override
