@@ -86,8 +86,27 @@
                     android:src="@drawable/icon_profile_name" />
 
                 <EditText
-                    android:id="@+id/txtProfileName"
-                    android:layout_width="343dp"
+                    android:id="@+id/txtProfileFName"
+                    android:layout_width="346dp"
+                    android:layout_height="67dp"
+                    android:hint="@string/name_hint" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_horizontal">
+
+                <ImageView
+                    android:layout_marginStart="10dp"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center_vertical"
+                    android:src="@drawable/icon_profile_name" />
+
+                <EditText
+                    android:id="@+id/txtProfileLName"
+                    android:layout_width="346dp"
                     android:layout_height="67dp"
                     android:hint="@string/name_hint" />
             </LinearLayout>

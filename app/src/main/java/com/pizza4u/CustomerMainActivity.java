@@ -42,7 +42,7 @@ public class CustomerMainActivity extends AppCompatActivity {
                         replaceFragment(new CusOrdersFragment());
                         break;
                     case R.id.profile:
-                        replaceFragment(new CusProfileFragment());
+                        replaceFragment(new CusProfileFragment(userModel));
                         break;
 
                 }
