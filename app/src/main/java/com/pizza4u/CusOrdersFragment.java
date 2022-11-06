@@ -86,4 +86,5 @@ public class CusOrdersFragment extends Fragment {
 //            imgNoNotes.setVisibility(View.GONE);
 //            txtNoNotes.setVisibility(View.GONE);
     }
+
 }

@@ -80,4 +80,5 @@ public class CusHomeFragment extends Fragment {
 //            txtNoNotes.setVisibility(View.GONE);
 //            }
     }
+
 }
