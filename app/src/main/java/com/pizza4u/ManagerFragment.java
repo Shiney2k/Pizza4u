@@ -271,10 +271,10 @@ public class ManagerFragment extends Fragment {
                 data.put("fname", editTextFirstNameManager.getText().toString().trim());
                 data.put("lname", editTextLastNameManager.getText().toString().trim());
                 data.put("email", editTextEmailManager.getText().toString().trim());
-                data.put("phone", editTextPhoneManager.getText().toString().trim());
+                data.put("phone", Integer.parseInt(editTextPhoneManager.getText().toString().trim()));
                 data.put("password", editTextPasswordManager.getText().toString().trim());
-                data.put("branchid", editTextBranchIdManager.getText().toString().trim());
-                data.put("employeeid", editTextEmployeeIdManager.getText().toString().trim());
+                data.put("branchid", Integer.parseInt(editTextBranchIdManager.getText().toString().trim()));
+                data.put("employeeid", Integer.parseInt(editTextEmployeeIdManager.getText().toString().trim()));
                 data.put("profilepic", profilepicUri);
 
                 db.collection("users").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {

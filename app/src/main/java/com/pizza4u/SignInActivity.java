@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -19,6 +20,7 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.pizza4u.models.UserModel;
 
 import java.util.Map;
 
@@ -57,16 +59,20 @@ public class SignInActivity extends AppCompatActivity {
                                             // String email = document.get("email").toString();
                                             // Log.d("Email", email);
 
-                                            if(document.get("password").toString().equals(editTextPassword.getText().toString().trim())) {
+                                        UserModel userModel = document.toObject(UserModel.class);
+
+                                            if(userModel.getPassword().equals(editTextPassword.getText().toString().trim())) {
                                                 editTextEmail.setText("");
                                                 editTextPassword.setText("");
-                                                switch (document.get("acctype").toString()) {
+                                                switch (userModel.getAcctype()) {
                                                     case "Customer":
                                                         Intent intent1 = new Intent(SignInActivity.this, CustomerMainActivity.class);
+                                                        intent1.putExtra("userData", userModel);
                                                         startActivity(intent1);
                                                         break;
                                                     case "Manager":
                                                         Intent intent2 = new Intent(SignInActivity.this, ManagerMainActivity.class);
+                                                        intent2.putExtra("userData", userModel);
                                                         startActivity(intent2);
                                                         break;
                                                 }

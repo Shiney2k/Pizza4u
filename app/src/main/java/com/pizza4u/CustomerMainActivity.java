@@ -7,10 +7,12 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.pizza4u.models.UserModel;
 
 public class CustomerMainActivity extends AppCompatActivity {
 
@@ -21,6 +23,10 @@ public class CustomerMainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
         replaceFragment(new CusHomeFragment());
+
+        UserModel userModel = (UserModel) getIntent().getSerializableExtra("userData");
+        Log.d("UserData from Customer Home", userModel.getEmail() + " " + userModel.getFname());
+
         nav = findViewById(R.id.nav_bar);
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

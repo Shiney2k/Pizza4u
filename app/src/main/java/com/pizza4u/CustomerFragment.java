@@ -267,7 +267,7 @@ public class CustomerFragment extends Fragment {
                 data.put("fname", editTextFirstNameCustomer.getText().toString().trim());
                 data.put("lname", editTextLastNameCustomer.getText().toString().trim());
                 data.put("email", editTextEmailCustomer.getText().toString().trim());
-                data.put("phone", editTextPhoneCustomer.getText().toString().trim());
+                data.put("phone", Integer.parseInt(editTextPhoneCustomer.getText().toString().trim()));
                 data.put("password", editTextPasswordCustomer.getText().toString().trim());
                 data.put("profilepic", profilepicUri);
 
