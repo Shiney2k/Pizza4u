@@ -6,8 +6,35 @@ public class OrderModel {
     String orderId;
     Float price;
     DateTime date;
+    Double longitude;
+    Double latitude;
+
 
     public OrderModel() {
+    }
+
+    public OrderModel(String orderId, Float price, DateTime date, Double longitude, Double latitude) {
+        this.orderId = orderId;
+        this.price = price;
+        this.date = date;
+        this.longitude = longitude;
+        this.latitude = latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public void setLongitude(Double longitude) {
+        this.longitude = longitude;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public void setLatitude(Double latitude) {
+        this.latitude = latitude;
     }
 
     public String getOrderId() {

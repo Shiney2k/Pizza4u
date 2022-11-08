@@ -14,6 +14,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.pizza4u.models.CartItemModel;
+
 import java.util.ArrayList;
 
 public class CusCartFragment extends Fragment {
@@ -24,11 +26,16 @@ public class CusCartFragment extends Fragment {
     private CartRecycleAdapter cartRecycleAdapter;
     private TextView txttot;
     private Button btnOrder;
+    CartItemModel cartItemModel;
     //private DatabaseHelper newDB;
 
 
     public CusCartFragment() {
         // Required empty public constructor
+    }
+
+    public CusCartFragment(CartItemModel cartItemModel) {
+        this.cartItemModel=cartItemModel;
     }
 
     public static CusCartFragment newInstance(String param1, String param2) {

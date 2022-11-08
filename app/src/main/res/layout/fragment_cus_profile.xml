@@ -28,7 +28,7 @@
                 android:layout_marginTop="15dp"
                 android:fontFamily="@font/belleza"
                 android:gravity="center_horizontal"
-                android:textSize="25dp"
+                android:textSize="23dp"
                 android:text="@string/cus_profile_heading"
                 android:textStyle="bold" />
 
@@ -87,6 +87,7 @@
 
                 <EditText
                     android:id="@+id/txtProfileFName"
+                    android:textSize="15dp"
                     android:layout_width="346dp"
                     android:layout_height="67dp"
                     android:hint="@string/name_hint" />
@@ -108,6 +109,7 @@
                     android:id="@+id/txtProfileLName"
                     android:layout_width="346dp"
                     android:layout_height="67dp"
+                    android:textSize="15dp"
                     android:hint="@string/name_hint" />
             </LinearLayout>
 
@@ -124,6 +126,7 @@
 
                 <EditText
                     android:id="@+id/txtCusPhone"
+                    android:textSize="15dp"
                     android:layout_width="344dp"
                     android:layout_height="60dp"
                     android:hint="@string/phone_hint"
@@ -146,45 +149,9 @@
                     android:id="@+id/txtCusMail"
                     android:layout_width="344dp"
                     android:layout_height="60dp"
+                    android:textSize="15dp"
                     android:hint="@string/mail_hint"
                     android:inputType="textEmailAddress" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <ImageButton
-                    android:id="@+id/btnLocation"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    android:layout_gravity="center_vertical"
-                    android:layout_marginStart="5dp"
-                    android:contentDescription="@string/chnge_loction"
-                    android:src="@drawable/icon_location" />
-
-                <TextView
-                    android:id="@+id/txtLocation"
-                    android:layout_marginStart="5dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/location"
-                    android:layout_gravity="center_vertical"
-                    android:textSize="15dp"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
-                <TextView
-                    android:id="@+id/maps_userLocation"
-                    android:layout_width="400dp"
-                    android:layout_height="50dp"
-                    android:layout_marginStart="5dp"
-                    android:contentDescription="@string/order_location" />
 
             </LinearLayout>
 

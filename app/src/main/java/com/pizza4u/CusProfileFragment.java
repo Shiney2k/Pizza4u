@@ -47,10 +47,9 @@ import java.util.Map;
 public class CusProfileFragment extends Fragment {
 
     private View view;
-    private EditText edt_name,edt_phone,edt_email;
-    private Button btnSave,btn_changePP,btn_changeLocation;
+    private EditText edt_fname,edt_lname,edt_phone,edt_email;
+    private Button btnSave,btn_changePP;
     private ImageView imgPP;
-    //private DatabaseHelper newDB; photo location
     Bitmap image;
     Uri selectedImage;
     String profilepicUri;
@@ -75,9 +74,6 @@ public class CusProfileFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-
-        }
     }
 
     @Override
@@ -91,20 +87,22 @@ public class CusProfileFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        edt_name=view.findViewById(R.id.txtProfileName);
+        edt_fname=view.findViewById(R.id.txtProfileFName);
+        edt_lname=view.findViewById(R.id.txtProfileLName);
         edt_email=view.findViewById(R.id.txtCusMail);
         edt_phone=view.findViewById(R.id.txtCusPhone);
         imgPP=view.findViewById(R.id.imgProfilePic);
         btnSave=view.findViewById(R.id.btnSave);
         btn_changePP=view.findViewById(R.id.btnEditProPic);
-        btn_changeLocation=view.findViewById(R.id.btnChangeLocation);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseStorage storage = FirebaseStorage.getInstance();
 
-        edt_name.setText(userModel.getFname());
+        edt_fname.setText(userModel.getFname());
+        edt_lname.setText(userModel.getLname());
         edt_email.setText(userModel.getEmail());
         edt_phone.setText(userModel.getPhone());
+        imgPP.setImageURI(Uri.parse(userModel.getProfilepic()));
 
         btn_changePP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -222,20 +220,20 @@ public class CusProfileFragment extends Fragment {
                 }
 
                 userModel.setEmail(edt_email.getText().toString().trim());
-                userModel.se
+                userModel.setFname(edt_fname.getText().toString().trim());
 
                 Map<String, Object> data = new HashMap<>();
-                data.put("acctype", "Customer");
-                data.put("name", edt_name.getText().toString().trim());
+                data.put("fname", edt_fname.getText().toString().trim());
+                data.put("lname", edt_lname.getText().toString().trim());
                 data.put("email", edt_email.getText().toString().trim());
                 data.put("phone", edt_phone.getText().toString().trim());
                 data.put("profilepic", profilepicUri);
 
-                db.collection("users").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                db.collection("users").document(userModel.getUserID()).set(data)
+                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void unused) {
+                                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which){
@@ -251,12 +249,11 @@ public class CusProfileFragment extends Fragment {
                         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                         builder.setMessage("Account updated successfully.").setPositiveButton("Ok", dialogClickListener)
                                 .show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
                                 switch (which){
@@ -269,8 +266,10 @@ public class CusProfileFragment extends Fragment {
                         AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
                         builder.setTitle("Failed to update account.").setMessage("Error: " + String.valueOf(e)).setPositiveButton("Ok", dialogClickListener)
                                 .show();
-                    }
-                });
+                            }
+                        });
+
+
             }
 
         });
@@ -300,6 +299,6 @@ public class CusProfileFragment extends Fragment {
                 }
                 break;
         }
-    }
+     }
 
 }
