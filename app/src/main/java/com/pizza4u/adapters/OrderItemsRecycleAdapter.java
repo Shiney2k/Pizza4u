@@ -12,20 +12,21 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pizza4u.R;
+import com.pizza4u.activities.CusOrderActivity;
+import com.pizza4u.models.OrderItemModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class OrderItemsRecycleAdapter extends RecyclerView.Adapter<OrderItemsRecycleAdapter.OrderItemsViewHolder> {
 
     Context mContext;
-    private ArrayList name,count,price;
+    private List<OrderItemModel> orderItemModelList;
     private int position;
 
-    public OrderItemsRecycleAdapter(Context mContext,ArrayList name,ArrayList count,ArrayList price) {
+    public OrderItemsRecycleAdapter(CusOrderActivity mContext, List<OrderItemModel> orderItemModelArrayList) {
         this.mContext=mContext;
-        this.name = name;
-        this.count=count;
-        this.price=price;
+        this.orderItemModelList=orderItemModelArrayList;
     }
 
     @NonNull
@@ -40,20 +41,21 @@ public class OrderItemsRecycleAdapter extends RecyclerView.Adapter<OrderItemsRec
     public void onBindViewHolder(@NonNull OrderItemsViewHolder holder, @SuppressLint("RecyclerView") int position) {
         this.position=position;
 
-        holder.txtName.setText(String.valueOf(name.get(position)));
-        holder.txtPrice.setText(String.valueOf(price.get(position)));
-        holder.txtCount.setText(String.valueOf(count.get(position)));
+        holder.txtName.setText(String.valueOf(orderItemModelList.get(position).getPizzaName()));
+        holder.txtPrice.setText(String.valueOf(orderItemModelList.get(position).getSubTotal()));
+        holder.txtCount.setText(String.valueOf(orderItemModelList.get(position).getCount()));
+        holder.txtSize.setText(String.valueOf(orderItemModelList.get(position).getSize()));
 
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return orderItemModelList.size();
     }
 
     public static class OrderItemsViewHolder extends RecyclerView.ViewHolder{
 
-        public TextView txtName,txtPrice,txtCount;
+        public TextView txtName,txtPrice,txtCount,txtSize;
         ConstraintLayout oLayout;
 
         public OrderItemsViewHolder(@NonNull View itemView) {
@@ -62,6 +64,7 @@ public class OrderItemsRecycleAdapter extends RecyclerView.Adapter<OrderItemsRec
             txtName=itemView.findViewById(R.id.txtName);
             txtPrice=itemView.findViewById(R.id.txtPrice);
             txtCount=itemView.findViewById(R.id.txtCount);
+            txtSize=itemView.findViewById(R.id.txtPizzaSize);
 
         }
     }

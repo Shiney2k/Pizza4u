@@ -1,39 +1,57 @@
 package com.pizza4u.models;
 
-import com.google.type.DateTime;
-
 public class OrderModel {
+    String userEmail;
     String orderId;
-    Float price;
-    DateTime date;
-    Double longitude;
-    Double latitude;
+    String status;
+    Double total;
+    String dateTime;
+    String longitude;
+    String latitude;
 
 
     public OrderModel() {
     }
 
-    public OrderModel(String orderId, Float price, DateTime date, Double longitude, Double latitude) {
+    public OrderModel(String userID,String orderId,String status, Double price, String date, String longitude, String latitude) {
+        this.userEmail =userID;
         this.orderId = orderId;
-        this.price = price;
-        this.date = date;
+        this.status=status;
+        this.total = price;
+        this.dateTime = date;
         this.longitude = longitude;
         this.latitude = latitude;
     }
 
-    public Double getLongitude() {
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getLongitude() {
         return longitude;
     }
 
-    public void setLongitude(Double longitude) {
+    public void setLongitude(String longitude) {
         this.longitude = longitude;
     }
 
-    public Double getLatitude() {
+    public String getLatitude() {
         return latitude;
     }
 
-    public void setLatitude(Double latitude) {
+    public void setLatitude(String latitude) {
         this.latitude = latitude;
     }
 
@@ -45,19 +63,19 @@ public class OrderModel {
         this.orderId = orderId;
     }
 
-    public Float getPrice() {
-        return price;
+    public Double getTotal() {
+        return total;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public void setTotal(Double total) {
+        this.total = total;
     }
 
-    public DateTime getDate() {
-        return date;
+    public String getDateTime() {
+        return dateTime;
     }
 
-    public void setDate(DateTime date) {
-        this.date = date;
+    public void setDateTime(String dateTime) {
+        this.dateTime = dateTime;
     }
 }

@@ -1,24 +1,35 @@
 package com.pizza4u.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
-import com.pizza4u.adapters.PizzasRecycleAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pizza4u.R;
+import com.pizza4u.adapters.PizzasRecycleAdapter;
+import com.pizza4u.models.PizzaModel;
+import com.pizza4u.models.PizzaTypeModel;
 
 import java.util.ArrayList;
 
 public class CusPizzaListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    private ArrayList name,photo,price,description;
+    ArrayList<PizzaModel> pizzaModelArrayList;
+    PizzasRecycleAdapter pizzasRecycleAdapter;
+    FirebaseFirestore db =FirebaseFirestore.getInstance();
     private TextView txtpType;
-    private String pType;
+    private String pType,typeID;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -31,36 +42,42 @@ public class CusPizzaListActivity extends AppCompatActivity {
 
         getIntent().hasExtra("pType") ;
 
-            // getting data from intent
-            pType = getIntent().getStringExtra("pType");
+        // getting data from intent
+        pType = getIntent().getStringExtra("pType");
+        typeID=getIntent().getStringExtra("ptypeID");
 
-            // setting intent data
-            txtpType.setText(pType);
+        // setting intent data
+        txtpType.setText(pType);
 
-        //newDB = new DatabaseHelper(MedicalNotesActivity.this);
-        name = new ArrayList<>();
-        photo = new ArrayList<>();
-        price = new ArrayList<>();
-        description = new ArrayList<>();
+        pizzaModelArrayList=new ArrayList<>();
 
-//        Cursor cursor = newDB.displayNotes(Integer.valueOf(MainActivity.id.get(0)));
-//
-//        if (cursor.getCount() == 0) {
-//            imgNoNotes.setVisibility(View.VISIBLE);
-//            txtNoNotes.setVisibility(View.VISIBLE);
-//        } else {
-//            while(cursor.moveToNext()){
-//                name.add(cursor.getString(0));
-//                photo.add(cursor.getString(1));
-//                price.add(cursor.getString(2));
-//                description.add(cursor.getString(3));
-//            }
-//            imgNoNotes.setVisibility(View.GONE);
-//            txtNoNotes.setVisibility(View.GONE);
-//        }
+        db.collection("pizza")
+                .whereEqualTo("pizza_type",pType)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            if(!task.getResult().isEmpty()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    // Log.d(TAG, document.getId() + " => " + document.getData());
+                                    String documentid = document.getId();
+                                    // Log.d("Email", email);
 
-        PizzasRecycleAdapter pizzaAdapter = new PizzasRecycleAdapter(CusPizzaListActivity.this, name, photo, price, description);
-        recyclerView.setAdapter(pizzaAdapter);
+                                    PizzaModel pizzaModel = document.toObject(PizzaModel.class);
+                                    pizzaModelArrayList.add(pizzaModel);
+                                    pizzasRecycleAdapter.notifyDataSetChanged();
+
+                                }
+                            }}
+                    }
+
+                });
+
+
+        pizzasRecycleAdapter=new PizzasRecycleAdapter(this,pizzaModelArrayList);
+        recyclerView.setAdapter(pizzasRecycleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(CusPizzaListActivity.this));
 
     }

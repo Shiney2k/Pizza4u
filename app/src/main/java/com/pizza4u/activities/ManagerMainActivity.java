@@ -39,7 +39,7 @@ public class ManagerMainActivity extends AppCompatActivity {
         buttonAddBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ManagerMainActivity.this ,AddBranchActivity.class);
+                Intent intent = new Intent(ManagerMainActivity.this , AddBranchActivity.class);
                 startActivity(intent);
             }
         });

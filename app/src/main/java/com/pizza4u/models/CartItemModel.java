@@ -1,17 +1,57 @@
 package com.pizza4u.models;
 
 public class CartItemModel {
+    String userEmail;
     String pizzaName;
-    Float price;
+    String size;
+    Float subTotal;
+    Float unitPrice;
     int count;
+    String docId;
 
     public CartItemModel() {
     }
 
-    public CartItemModel(String pizzaName, Float price, int count) {
+    public CartItemModel(String userID, String pizzaName,String size, Float price,Float unitPrice, int count,String docId) {
+        this.userEmail =userID;
+        this.size=size;
         this.pizzaName = pizzaName;
-        this.price = price;
+        this.subTotal = price;
+        this.unitPrice=unitPrice;
         this.count = count;
+        this.docId=docId;
+    }
+
+    public String getUserEmail() {
+        return userEmail;
+    }
+
+    public void setUserEmail(String userEmail) {
+        this.userEmail = userEmail;
+    }
+
+    public String getDocId() {
+        return docId;
+    }
+
+    public void setDocId(String docId) {
+        this.docId = docId;
+    }
+
+    public String getSize() {
+        return size;
+    }
+
+    public void setSize(String size) {
+        this.size = size;
+    }
+
+    public Float getUnitPrice() {
+        return unitPrice;
+    }
+
+    public void setUnitPrice(Float unitPrice) {
+        this.unitPrice = unitPrice;
     }
 
     public String getPizzaName() {
@@ -22,12 +62,12 @@ public class CartItemModel {
         this.pizzaName = pizzaName;
     }
 
-    public Float getPrice() {
-        return price;
+    public Float getSubTotal() {
+        return subTotal;
     }
 
-    public void setPrice(Float price) {
-        this.price = price;
+    public void setSubTotal(Float subTotal) {
+        this.subTotal = subTotal;
     }
 
     public int getCount() {

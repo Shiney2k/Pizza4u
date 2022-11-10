@@ -79,4 +79,12 @@
     <string name="button_create_account">Create account</string>
     <string name="button_cancel">Cancel</string>
     <string name="order_location">Order Location</string>
+    <string name="choose_size">Choose Size</string>
+    <string name="pizza_size">Small</string>
+
+    <string-array name="sizes">
+        <item>Small</item>
+        <item>Medium</item>
+        <item>Large</item>
+    </string-array>
 </resources>

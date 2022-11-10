@@ -1,5 +1,8 @@
 package com.pizza4u.fragments;
 
+import static java.lang.Double.parseDouble;
+
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,19 +15,36 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pizza4u.R;
 import com.pizza4u.adapters.PizzaTypeRecycleAdapter;
+import com.pizza4u.models.CartItemModel;
+import com.pizza4u.models.PizzaTypeModel;
+import com.pizza4u.models.UserModel;
 
 import java.util.ArrayList;
+import java.util.Objects;
 
 
 public class CusHomeFragment extends Fragment {
 
     private View view;
     private RecyclerView recyclerView;
-    private ArrayList pizzaType, ptPhoto;
     private PizzaTypeRecycleAdapter pizzaTypeRecycleAdapter;
-    //private DatabaseHelper newDB;
+    ArrayList<PizzaTypeModel> pizzaTypeModelArrayList;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+    public CusHomeFragment() {
+
+    }
+
+    public CusHomeFragment (ArrayList<PizzaTypeModel> pizzaTypeModelArrayList) {
+        this.pizzaTypeModelArrayList=pizzaTypeModelArrayList;
+    }
 
     public static CusHomeFragment newInstance(String param1, String param2) {
         CusHomeFragment fragment = new CusHomeFragment();
@@ -44,7 +64,8 @@ public class CusHomeFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_cus_home, container, false);
+        view = inflater.inflate(R.layout.fragment_cus_cart, container, false);
+        return view;
     }
 
     @Override
@@ -53,31 +74,37 @@ public class CusHomeFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recyclerPTypes);
 
-        //newDB = new DatabaseHelper(MedicalNotesActivity.this);
-        pizzaType = new ArrayList<>();
-        ptPhoto = new ArrayList<>();
+        pizzaTypeModelArrayList=new ArrayList<>();
 
-        displayData();
+        db.collection("pizza-types")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            if(!task.getResult().isEmpty()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    // Log.d(TAG, document.getId() + " => " + document.getData());
+                                    String documentid = document.getId();
+                                    // Log.d("Email", email);
 
-        pizzaTypeRecycleAdapter = new PizzaTypeRecycleAdapter(getContext(), pizzaType, ptPhoto);
+                                    PizzaTypeModel pizzaTypeModel = document.toObject(PizzaTypeModel.class);
+                                    pizzaTypeModelArrayList.add(pizzaTypeModel);
+                                    pizzaTypeRecycleAdapter.notifyDataSetChanged();
+
+                                }
+                            }}
+                    }
+
+                });
+
+
+        pizzaTypeRecycleAdapter=new PizzaTypeRecycleAdapter(this.getContext(),pizzaTypeModelArrayList);
         recyclerView.setAdapter(pizzaTypeRecycleAdapter);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-    }        //if (cursor.getCount() == 0) {
-
-
-    private void displayData() {
-        //Cursor cursor = newDB.displayNotes(Integer.valueOf(MainActivity.id.get(0)));
-//            imgNoNotes.setVisibility(View.VISIBLE);
-//            txtNoNotes.setVisibility(View.VISIBLE);
-//        } else {
-//            while(cursor.moveToNext()){
-//                pizzaType.add(cursor.getString(0));
-//                ptPhoto.add(cursor.getString(1));
-//            }
-//            imgNoNotes.setVisibility(View.GONE);
-//            txtNoNotes.setVisibility(View.GONE);
-//            }
     }
 
 }

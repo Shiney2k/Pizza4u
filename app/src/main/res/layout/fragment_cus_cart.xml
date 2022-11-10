@@ -64,7 +64,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:text="Change Order Location"
+                    android:text="Get Current location as Order Location"
                     android:textSize="15dp" />
 
                 <ImageButton

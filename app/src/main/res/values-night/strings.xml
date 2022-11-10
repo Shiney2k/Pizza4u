@@ -17,5 +17,7 @@
     <string name="totPrice">4500</string>
     <string name="chnge_loction">Change Location</string>
     <string name="order_location">Order Location</string>
+    <string name="choose_size">Choose Size</string>
+    <string name="pizza_size">Small</string>
 
 </resources>

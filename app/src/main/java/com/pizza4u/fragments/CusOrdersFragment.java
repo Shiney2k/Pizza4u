@@ -2,6 +2,7 @@ package com.pizza4u.fragments;
 
 import androidx.fragment.app.Fragment;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -13,8 +14,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pizza4u.R;
 import com.pizza4u.adapters.OrdersRecycleAdapter;
+import com.pizza4u.models.OrderModel;
+import com.pizza4u.models.UserModel;
 
 import java.util.ArrayList;
 
@@ -22,10 +30,11 @@ import java.util.ArrayList;
 public class CusOrdersFragment extends Fragment {
 
     private View view;
+    UserModel userModel;
     private RecyclerView recyclerView;
-    private ArrayList orderid, price, date, status;
-    private OrdersRecycleAdapter ordersRecycleAdapter;
-    //private DatabaseHelper newDB;
+    ArrayList<OrderModel> orderModelArrayList;
+    OrdersRecycleAdapter ordersRecycleAdapter;
+    FirebaseFirestore db =FirebaseFirestore.getInstance();
 
     public CusOrdersFragment() {
         // Required empty public constructor
@@ -58,33 +67,36 @@ public class CusOrdersFragment extends Fragment {
 
         recyclerView = view.findViewById(R.id.recycler_orders);
 
-        //newDB = new DatabaseHelper(MedicalNotesActivity.this);
-        orderid = new ArrayList<>();
-        price = new ArrayList<>();
-        status = new ArrayList<>();
-        date = new ArrayList<>();
+        orderModelArrayList=new ArrayList<>();
 
-        displayData();
+        db.collection("orders")
+                .whereEqualTo("userEmail",userModel.getEmail())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            if(!task.getResult().isEmpty()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    // Log.d(TAG, document.getId() + " => " + document.getData());
+                                    String documentid = document.getId();
+                                    // Log.d("Email", email);
 
-        ordersRecycleAdapter = new OrdersRecycleAdapter(getContext(), orderid, price, status, date);
+                                    OrderModel orderModel = document.toObject(OrderModel.class);
+                                    orderModelArrayList.add(orderModel);
+                                    ordersRecycleAdapter.notifyDataSetChanged();
+
+                                }
+                            }}
+                    }
+
+                });
+
+        ordersRecycleAdapter = new OrdersRecycleAdapter(getContext(), orderModelArrayList);
         recyclerView.setAdapter(ordersRecycleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 
-    }
-
-    private void displayData() {
-//        Cursor cursor = newDB.displayNotes(Integer.valueOf(MainActivity.id.get(0)));
-//            imgNoNotes.setVisibility(View.VISIBLE);
-//            txtNoNotes.setVisibility(View.VISIBLE);
-//        } else {
-//            while(cursor.moveToNext()){
-//                orderid.add(cursor.getString(0));
-//                price.add(cursor.getString(1));
-//                date.add(cursor.getString(2));
-//                status.add(cursor.getString(3));
-//            }
-//            imgNoNotes.setVisibility(View.GONE);
-//            txtNoNotes.setVisibility(View.GONE);
     }
 
 }

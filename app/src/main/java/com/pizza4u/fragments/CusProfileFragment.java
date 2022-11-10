@@ -226,7 +226,7 @@ public class CusProfileFragment extends Fragment {
                 data.put("phone", edt_phone.getText().toString().trim());
                 data.put("profilepic", profilepicUri);
 
-                db.collection("users").document(userModel.getUserID()).set(data)
+                db.collection("users").document(userModel.getEmail()).set(data)
                         .addOnSuccessListener(new OnSuccessListener<Void>() {
                             @Override
                             public void onSuccess(Void unused) {

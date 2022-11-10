@@ -3,6 +3,8 @@ package com.pizza4u.fragments;
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
+import static java.lang.Float.parseFloat;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -22,12 +24,14 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
@@ -35,6 +39,9 @@ import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 import com.pizza4u.MainActivity;
 import com.pizza4u.R;
+import com.pizza4u.activities.CusPizzaViewActivity;
+import com.pizza4u.models.CartItemModel;
+import com.pizza4u.models.UserModel;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
@@ -221,8 +228,8 @@ public class CustomerFragment extends Fragment {
                             public void onComplete(@NonNull Task<Uri> task) {
                                 if (task.isSuccessful()) {
                                     Uri downloadUri = task.getResult();
-                                    profilepicUri = String.valueOf(downloadUri);
-                                    Log.d("Profile picture download uri: ", profilepicUri);
+                                    Log.d("Profile picture download uri: ", downloadUri.toString());
+                                    addCustomer(db,view,downloadUri.toString());
                                 } else {
                                     Log.d(TAG, "Failed to get image download URL");
                                 }
@@ -254,8 +261,9 @@ public class CustomerFragment extends Fragment {
                             public void onComplete(@NonNull Task<Uri> task) {
                                 if (task.isSuccessful()) {
                                     Uri downloadUri = task.getResult();
-                                    profilepicUri = String.valueOf(downloadUri);
-                                    Log.d("Profile picture download uri: ", profilepicUri);
+                                    Log.d("Profile picture download uri: ", downloadUri.toString());
+
+                                    addCustomer(db,view,downloadUri.toString());
                                 } else {
                                     Log.d(TAG, "Failed to get image download URL");
                                 }
@@ -264,55 +272,56 @@ public class CustomerFragment extends Fragment {
                     }
                 }
 
-                Map<String, Object> data = new HashMap<>();
-                data.put("acctype", "Customer");
-                data.put("fname", editTextFirstNameCustomer.getText().toString().trim());
-                data.put("lname", editTextLastNameCustomer.getText().toString().trim());
-                data.put("email", editTextEmailCustomer.getText().toString().trim());
-                data.put("phone", Integer.parseInt(editTextPhoneCustomer.getText().toString().trim()));
-                data.put("password", editTextPasswordCustomer.getText().toString().trim());
-                data.put("profilepic", profilepicUri);
 
-                db.collection("users").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
-                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
-                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which){
-                                    case DialogInterface.BUTTON_POSITIVE:
-                                        //Yes button clicked
-                                        Intent intent = new Intent(getContext(),MainActivity.class);
-                                        startActivity(intent);
-                                        break;
-                                }
-                            }
-                        };
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                        builder.setMessage("Account created successfully.").setPositiveButton("Ok", dialogClickListener)
-                                .show();
-                    }
-                }).addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Log.w(TAG, "Error adding document", e);
-                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which){
-                                    case DialogInterface.BUTTON_POSITIVE:
-                                        break;
-                                }
-                            }
-                        };
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                        builder.setTitle("Failed to create account.").setMessage("Error: " + String.valueOf(e)).setPositiveButton("Ok", dialogClickListener)
-                                .show();
-                    }
-                });
+//                Map<String, Object> data = new HashMap<>();
+//                data.put("acctype", "Customer");
+//                data.put("fname", editTextFirstNameCustomer.getText().toString().trim());
+//                data.put("lname", editTextLastNameCustomer.getText().toString().trim());
+//                data.put("email", editTextEmailCustomer.getText().toString().trim());
+//                data.put("phone", Integer.parseInt(editTextPhoneCustomer.getText().toString().trim()));
+//                data.put("password", editTextPasswordCustomer.getText().toString().trim());
+//                data.put("profilepic", profilepicUri);
+//
+//                db.collection("users").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+//                    @Override
+//                    public void onSuccess(DocumentReference documentReference) {
+//                        Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
+//                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                switch (which){
+//                                    case DialogInterface.BUTTON_POSITIVE:
+//                                        //Yes button clicked
+//                                        Intent intent = new Intent(getContext(),MainActivity.class);
+//                                        startActivity(intent);
+//                                        break;
+//                                }
+//                            }
+//                        };
+//
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+//                        builder.setMessage("Account created successfully.").setPositiveButton("Ok", dialogClickListener)
+//                                .show();
+//                    }
+//                }).addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//                        Log.w(TAG, "Error adding document", e);
+//                        DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                switch (which){
+//                                    case DialogInterface.BUTTON_POSITIVE:
+//                                        break;
+//                                }
+//                            }
+//                        };
+//
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+//                        builder.setTitle("Failed to create account.").setMessage("Error: " + String.valueOf(e)).setPositiveButton("Ok", dialogClickListener)
+//                                .show();
+//                    }
+//                });
             }
         });
     }
@@ -340,5 +349,66 @@ public class CustomerFragment extends Fragment {
                 }
                 break;
         }
+    }
+
+
+    public void addCustomer(FirebaseFirestore db,View view,String downloadUri){
+        CollectionReference dbUsers = db.collection("users");
+        DocumentReference documentReference = dbUsers.document();
+
+        UserModel userModel = new UserModel(
+                "Customer",
+                editTextFirstNameCustomer.getText().toString().trim(),
+                editTextLastNameCustomer.getText().toString().trim(),
+                editTextEmailCustomer.getText().toString().trim(),
+                Integer.parseInt(editTextPhoneCustomer.getText().toString().trim()),
+                editTextPasswordCustomer.getText().toString().trim(),
+                downloadUri,
+                documentReference.getId()
+        );
+
+        documentReference.set(userModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                Toast.makeText(getContext(), "Your item has been added to Firebase Firestore Cart", Toast.LENGTH_SHORT).show();
+
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                Intent intent = new Intent(getContext(),MainActivity.class);
+                                startActivity(intent);
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setMessage("Account created successfully.").setPositiveButton("Ok", dialogClickListener)
+                        .show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getContext(), "Fail to add Your item to Firebase Firestore cart", Toast.LENGTH_SHORT).show();
+
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Failed to create account.").setMessage("Error: " + String.valueOf(e)).setPositiveButton("Ok", dialogClickListener)
+                        .show();
+            }
+        });
+
     }
 }

@@ -1,27 +1,35 @@
 package com.pizza4u.activities;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.TextView;
 
-import com.pizza4u.adapters.OrderItemsRecycleAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.pizza4u.R;
+import com.pizza4u.adapters.OrderItemsRecycleAdapter;
+import com.pizza4u.models.OrderItemModel;
+import com.pizza4u.models.UserModel;
 
 import java.util.ArrayList;
 
 public class CusOrderActivity extends AppCompatActivity {
 
-    private View view;
     private RecyclerView recyclerView;
-    private ArrayList name,price,count;
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    UserModel userModel;
+    ArrayList<OrderItemModel> orderItemModelArrayList;
+    OrderItemsRecycleAdapter orderItemsRecycleAdapter;
     private String orderid,tot;
     private TextView txtOrderid,txttot;
-    private OrderItemsRecycleAdapter.OrderItemsViewHolder orderItemsViewHolder;
-    //private DatabaseHelper newDB;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,27 +46,35 @@ public class CusOrderActivity extends AppCompatActivity {
         txttot.setText(tot);
         txtOrderid.setText(orderid);
 
-        //newDB = new DatabaseHelper(MedicalNotesActivity.this);
-        name = new ArrayList<>();
-        price = new ArrayList<>();
-        count = new ArrayList<>();
+        orderItemModelArrayList=new ArrayList<>();
 
-        //        Cursor cursor = newDB.displayNotes(Integer.valueOf(MainActivity.id.get(0)));
-//
-//        if (cursor.getCount() == 0) {
-//            imgNoNotes.setVisibility(View.VISIBLE);
-//            txtNoNotes.setVisibility(View.VISIBLE);
-//        } else {
-//            while(cursor.moveToNext()){
-//                name.add(cursor.getString(0));
-//                price.add(cursor.getString(1));
-//                count.add(cursor.getString(2));
-//            }
-//            imgNoNotes.setVisibility(View.GONE);
-//            txtNoNotes.setVisibility(View.GONE);
-//        }
+        db.collection("orders")
+                .whereEqualTo("userEmail",userModel.getEmail())
+                .whereEqualTo("orderID",orderid)
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @SuppressLint("NotifyDataSetChanged")
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        if (task.isSuccessful()) {
+                            if(!task.getResult().isEmpty()) {
+                                for (QueryDocumentSnapshot document : task.getResult()) {
+                                    // Log.d(TAG, document.getId() + " => " + document.getData());
+                                    String documentid = document.getId();
+                                    // Log.d("Email", email);
 
-        OrderItemsRecycleAdapter orderItemsRecycleAdapter = new OrderItemsRecycleAdapter(CusOrderActivity.this,name,count,price);
+                                    OrderItemModel orderItemModel = document.toObject(OrderItemModel.class);
+                                    orderItemModelArrayList.add(orderItemModel);
+                                    orderItemsRecycleAdapter.notifyDataSetChanged();
+
+                                }
+                            }}
+                    }
+
+                });
+
+
+        orderItemsRecycleAdapter = new OrderItemsRecycleAdapter(CusOrderActivity.this,orderItemModelArrayList);
         recyclerView.setAdapter(orderItemsRecycleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(CusOrderActivity.this));
 

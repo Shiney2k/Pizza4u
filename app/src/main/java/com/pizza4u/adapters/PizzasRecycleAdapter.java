@@ -12,23 +12,23 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.pizza4u.R;
+import com.pizza4u.activities.CusPizzaListActivity;
 import com.pizza4u.activities.CusPizzaViewActivity;
+import com.pizza4u.R;
+import com.pizza4u.models.PizzaModel;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class PizzasRecycleAdapter extends RecyclerView.Adapter<PizzasRecycleAdapter.PizzasViewHolder>{
 
     Context mContext;
-    private ArrayList name,photo,price,description;
+    private List<PizzaModel> pizzaModelList;
     private int position;
 
-    public PizzasRecycleAdapter(Context mContext, ArrayList name, ArrayList photo,ArrayList price,ArrayList description) {
-        this.mContext = mContext;
-        this.name = name;
-        this.photo= photo;
-        this.price=price;
-        this.description=description;
+    public PizzasRecycleAdapter(CusPizzaListActivity mContext, List<PizzaModel> pizzaModelList) {
+        this.mContext=mContext;
+        this.pizzaModelList=pizzaModelList;
     }
 
 
@@ -44,16 +44,17 @@ public class PizzasRecycleAdapter extends RecyclerView.Adapter<PizzasRecycleAdap
     public void onBindViewHolder(@NonNull PizzasViewHolder pholder, @SuppressLint("RecyclerView") int position) {
         this.position =position;
 
-        pholder.txtName.setText(String.valueOf(name.get(position)));
-        pholder.txtDescription.setText(String.valueOf(description.get(position)));
+        pholder.txtName.setText(pizzaModelList.get(position).getName());
+        pholder.txtDescription.setText(pizzaModelList.get(position).getDescription());
+
         //pholder.img.setImageResource();
 
         pholder.pLayout.setOnClickListener(view -> {
             Intent intent = new Intent(mContext, CusPizzaViewActivity.class);
-            intent.putExtra("name",String.valueOf(name.get(position)));
-            intent.putExtra("description",String.valueOf(description.get(position)));
-            intent.putExtra("price",String.valueOf(price.get(position)));
-            intent.putExtra("photo",String.valueOf(photo.get(position)));
+            intent.putExtra("name",pizzaModelList.get(position).getName());
+            intent.putExtra("description",pizzaModelList.get(position).getDescription());
+            intent.putExtra("price",pizzaModelList.get(position).getPrice());
+            intent.putExtra("photo",pizzaModelList.get(position).getPhoto_url());
 
             mContext.startActivity(intent);
         });
@@ -62,7 +63,7 @@ public class PizzasRecycleAdapter extends RecyclerView.Adapter<PizzasRecycleAdap
 
     @Override
     public int getItemCount() {
-        return name.size();
+        return pizzaModelList.size();
     }
 
     public static class PizzasViewHolder extends RecyclerView.ViewHolder{

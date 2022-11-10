@@ -1,14 +1,23 @@
 package com.pizza4u.models;
 
 public class PizzaTypeModel {
-    String typeName,photo_url;
+    String typeID,typeName,photo_url;
 
     public PizzaTypeModel() {
     }
 
-    public PizzaTypeModel(String typeName, String photo_url) {
+    public PizzaTypeModel(String typeID,String typeName, String photo_url) {
+        this.typeID=typeID;
         this.typeName = typeName;
         this.photo_url = photo_url;
+    }
+
+    public String getTypeID() {
+        return typeID;
+    }
+
+    public void setTypeID(String typeID) {
+        this.typeID = typeID;
     }
 
     public String getTypeName() {
