@@ -22,8 +22,6 @@ public class ManagerMainActivity extends AppCompatActivity {
     Button buttonAddEmployee;
     Button buttonAddMenu;
     TextView txtManagerName;
-    
-
 
     @SuppressLint({"MissingInflatedId", "SetTextI18n"})
     @Override
@@ -35,32 +33,32 @@ public class ManagerMainActivity extends AppCompatActivity {
         buttonAddBranch = findViewById(R.id.buttonAddBranch);
         buttonAddEmployee = findViewById(R.id.buttonAddEmployee);
         buttonAddMenu = findViewById(R.id.buttonAddMenu);
-        txtManagerName=findViewById(R.id.textManager_name);
+        txtManagerName = findViewById(R.id.textManager_name);
 
-        if(getIntent().hasExtra("userData")){
+        if (getIntent().hasExtra("userData")) {
             UserModel userModel = (UserModel) getIntent().getSerializableExtra("userData");
             Log.d("UserData from Manager Home", userModel.getEmail() + " " + userModel.getFname());
 
 
-        Picasso.get().load(userModel.getProfilepic()).into(imageViewManager);
-        txtManagerName.setText(userModel.getFname()+" "+userModel.getLname());
+            Picasso.get().load(userModel.getProfilepic()).into(imageViewManager);
+            txtManagerName.setText(userModel.getFname() + " " + userModel.getLname());
 
-      
 
-        buttonAddBranch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ManagerMainActivity.this , AddBranchActivity.class);
-                startActivity(intent);
-            }
-        });
+            buttonAddBranch.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ManagerMainActivity.this, AddBranchActivity.class);
+                    startActivity(intent);
+                }
+            });
 
-        buttonAddEmployee.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(ManagerMainActivity.this , AddEmployeeActivity.class);
-                startActivity(intent);
-            }
-        });
+            buttonAddEmployee.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent = new Intent(ManagerMainActivity.this, AddEmployeeActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 }
