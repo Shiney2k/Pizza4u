@@ -74,6 +74,11 @@ public class SignInActivity extends AppCompatActivity {
                                                         intent2.putExtra("userData", userModel);
                                                         startActivity(intent2);
                                                         break;
+                                                    case "Employee":
+                                                        Intent intent3 = new Intent(SignInActivity.this, EmployeeMainActivity.class);
+                                                        intent3.putExtra("userData", userModel);
+                                                        startActivity(intent3);
+                                                        break;
                                                 }
                                             } else {
                                                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {

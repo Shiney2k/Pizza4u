@@ -82,6 +82,7 @@
     <string name="choose_size">Choose Size</string>
     <string name="pizza_size">Small</string>
     <string name="password">Password</string>
+    <string name="text_add_emp">Add New Employee</string>
 
     <string-array name="sizes">
         <item>Small</item>

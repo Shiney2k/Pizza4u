@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".activities.AddEmployeeActivity">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textAddEmp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="40dp"
+                android:layout_marginTop="40dp"
+                android:text="@string/text_add_emp"
+                android:textSize="24sp" />
+
+            <EditText
+                android:id="@+id/editTextFirstNameEmp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="@string/edit_text_first_name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextLastNameEmp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="@string/edit_text_last_name"
+                android:inputType="textPersonName" />
+
+            <EditText
+                android:id="@+id/editTextEmailEmp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="@string/edit_text_email"
+                android:inputType="textEmailAddress" />
+
+            <EditText
+                android:id="@+id/editTextPhoneEmp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="@string/edit_text_phone"
+                android:inputType="phone" />
+
+            <EditText
+                android:id="@+id/editTextPasswordEmp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="@string/edit_text_password"
+                android:inputType="textPassword" />
+
+            <EditText
+                android:id="@+id/editTextBranchIdEmp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="@string/edit_text_branch_id"
+                android:inputType="numberDecimal" />
+
+            <EditText
+                android:id="@+id/editTextEmployeeIdEmp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:ems="10"
+                android:hint="@string/edit_text_employee_id"
+                android:inputType="numberDecimal" />
+
+            <Button
+                android:id="@+id/buttonAddProfilePictureEmp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="?android:attr/colorBackground"
+                android:text="@string/button_add_profile_picture"
+                android:textColor="?android:attr/textColorTertiary"
+                app:rippleColor="?android:attr/colorActivatedHighlight" />
+
+            <ImageView
+                android:id="@+id/profilepicEmp"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                app:srcCompat="@drawable/manager_icon" />
+
+            <Button
+                android:id="@+id/buttonCreateAccountEmp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/button_create_account"
+                android:textColor="@color/colorOnPrimary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+            <Button
+                android:id="@+id/buttonCancelEmp"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
+                android:backgroundTint="?android:attr/colorBackground"
+                android:text="@string/button_cancel"
+                android:textColor="?android:attr/textColorTertiary"
+                app:rippleColor="?android:attr/colorActivatedHighlight" />
+
+        </LinearLayout>
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

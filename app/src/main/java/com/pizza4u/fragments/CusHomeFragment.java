@@ -101,10 +101,11 @@ public class CusHomeFragment extends Fragment {
 
 
         pizzaTypeRecycleAdapter=new PizzaTypeRecycleAdapter(this.getContext(),pizzaTypeModelArrayList);
-        recyclerView.setAdapter(pizzaTypeRecycleAdapter);
+        if(!pizzaTypeModelArrayList.isEmpty()) {
+            recyclerView.setAdapter(pizzaTypeRecycleAdapter);
 
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-
+            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        }
     }
 
 }

@@ -39,6 +39,7 @@ import com.google.firebase.storage.UploadTask;
 import com.pizza4u.MainActivity;
 import com.pizza4u.R;
 import com.pizza4u.models.UserModel;
+import com.squareup.picasso.Picasso;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
@@ -104,8 +105,9 @@ public class CusProfileFragment extends Fragment {
         edt_lname.setText(userModel.getLname());
         edt_email.setText(userModel.getEmail());
         edt_phone.setText(userModel.getPhone());
-        //imgPP.setImageURI(Uri.parse(userModel.getProfilepic()));
-        //Picasso.get().load(userModel.getProfilepic()).into(imgPP);
+
+        Picasso.get().load(userModel.getProfilepic()).into(imgPP);
+
 
         btn_changePP.setOnClickListener(new View.OnClickListener() {
             @Override

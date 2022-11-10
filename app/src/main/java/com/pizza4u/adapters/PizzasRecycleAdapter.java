@@ -16,6 +16,7 @@ import com.pizza4u.activities.CusPizzaListActivity;
 import com.pizza4u.activities.CusPizzaViewActivity;
 import com.pizza4u.R;
 import com.pizza4u.models.PizzaModel;
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,8 +47,7 @@ public class PizzasRecycleAdapter extends RecyclerView.Adapter<PizzasRecycleAdap
 
         pholder.txtName.setText(pizzaModelList.get(position).getName());
         pholder.txtDescription.setText(pizzaModelList.get(position).getDescription());
-
-        //pholder.img.setImageResource();
+        Picasso.get().load(pizzaModelList.get(position).getPhoto_url()).into(pholder.img);
 
         pholder.pLayout.setOnClickListener(view -> {
             Intent intent = new Intent(mContext, CusPizzaViewActivity.class);

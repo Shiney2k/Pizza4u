@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".activities.ManagerMainActivity">
+    tools:context=".activities.EmployeeMainActivity">
 
     <TextView
-        android:id="@+id/textManager"
+        android:id="@+id/textEmp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="MANAGER"
+        android:text="EMPLOYEE"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -22,11 +22,11 @@
 
 
     <TextView
-        android:id="@+id/textManager_name"
+        android:id="@+id/textEmp_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="32dp"
-        android:text="Manager Name"
+        android:text="Employee Name"
         android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
         app:layout_constraintVertical_bias="0.209" />
 
     <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/imageViewManager"
+        android:id="@+id/imageViewEmp"
         android:layout_width="142dp"
         android:layout_height="142dp"
         android:layout_marginTop="16dp"
@@ -49,42 +49,21 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textManager"
+        app:layout_constraintTop_toBottomOf="@+id/textEmp"
         android:src="@drawable/manager_icon" />
 
     <Button
-        android:id="@+id/buttonAddBranch"
+        android:id="@+id/buttonCheckOrders"
         android:layout_width="200dp"
         android:layout_height="50dp"
         android:layout_marginTop="64dp"
-        android:text="ADD BRANCH"
+        android:text="Check Orders"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageViewManager"
+        app:layout_constraintTop_toBottomOf="@+id/imageViewEmp"
         app:layout_constraintVertical_bias="0.1" />
 
-    <Button
-        android:id="@+id/buttonAddEmployee"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="20dp"
-        android:text="@string/add_employee"
-        app:layout_constraintBottom_toTopOf="@+id/buttonAddMenu"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/buttonAddBranch"
-        app:layout_constraintVertical_bias="0.65" />
 
-    <Button
-        android:id="@+id/buttonAddMenu"
-        android:layout_width="200dp"
-        android:layout_height="50dp"
-        android:layout_marginBottom="68dp"
-        android:text="@string/add_menu"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
