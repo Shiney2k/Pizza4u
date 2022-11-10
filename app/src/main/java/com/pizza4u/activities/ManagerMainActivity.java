@@ -19,7 +19,6 @@ public class ManagerMainActivity extends AppCompatActivity {
     Button buttonAddBranch;
     Button buttonAddEmployee;
     Button buttonAddMenu;
-    Bitmap bitmap;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,10 +30,12 @@ public class ManagerMainActivity extends AppCompatActivity {
         buttonAddEmployee = findViewById(R.id.buttonAddEmployee);
         buttonAddMenu = findViewById(R.id.buttonAddMenu);
 
-        UserModel userModel = (UserModel) getIntent().getSerializableExtra("userData");
-        Log.d("UserData from Manager Home", userModel.getEmail() + " " + userModel.getFname());
+        if(getIntent().hasExtra("userData")){
+            UserModel userModel = (UserModel) getIntent().getSerializableExtra("userData");
+            Log.d("UserData from Manager Home", userModel.getEmail() + " " + userModel.getFname());
 
-        Picasso.get().load(userModel.getProfilepic()).into(imageViewManager);
+            Picasso.get().load(userModel.getProfilepic()).into(imageViewManager);
+        }
 
         buttonAddBranch.setOnClickListener(new View.OnClickListener() {
             @Override

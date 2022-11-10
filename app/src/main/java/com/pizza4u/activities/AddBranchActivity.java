@@ -110,8 +110,7 @@ public class AddBranchActivity extends AppCompatActivity {
                                 switch (which){
                                     case DialogInterface.BUTTON_POSITIVE:
                                         //Yes button clicked
-                                        Intent intent = new Intent(AddBranchActivity.this,ManagerMainActivity.class);
-                                        startActivity(intent);
+                                        finish();
                                         break;
                                 }
                             }
