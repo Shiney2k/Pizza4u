@@ -81,6 +81,7 @@
     <string name="order_location">Order Location</string>
     <string name="choose_size">Choose Size</string>
     <string name="pizza_size">Small</string>
+    <string name="password">Password</string>
 
     <string-array name="sizes">
         <item>Small</item>

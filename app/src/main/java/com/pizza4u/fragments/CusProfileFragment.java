@@ -3,6 +3,8 @@ package com.pizza4u.fragments;
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
 
+import static java.lang.Integer.parseInt;
+
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -28,6 +30,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
@@ -44,7 +48,7 @@ import java.util.Map;
 public class CusProfileFragment extends Fragment {
 
     private View view;
-    private EditText edt_fname,edt_lname,edt_phone,edt_email;
+    private EditText edt_fname,edt_lname,edt_phone,edt_email,edt_password;
     private Button btnSave,btn_changePP;
     private ImageView imgPP;
     Bitmap image;
@@ -89,6 +93,7 @@ public class CusProfileFragment extends Fragment {
         edt_email=view.findViewById(R.id.txtCusMail);
         edt_phone=view.findViewById(R.id.txtCusPhone);
         imgPP=view.findViewById(R.id.imgProfilePic);
+        edt_password=view.findViewById(R.id.txtPassword);
         btnSave=view.findViewById(R.id.btnSave);
         btn_changePP=view.findViewById(R.id.btnEditProPic);
 
@@ -99,7 +104,8 @@ public class CusProfileFragment extends Fragment {
         edt_lname.setText(userModel.getLname());
         edt_email.setText(userModel.getEmail());
         edt_phone.setText(userModel.getPhone());
-        imgPP.setImageURI(Uri.parse(userModel.getProfilepic()));
+        //imgPP.setImageURI(Uri.parse(userModel.getProfilepic()));
+        //Picasso.get().load(userModel.getProfilepic()).into(imgPP);
 
         btn_changePP.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -173,8 +179,10 @@ public class CusProfileFragment extends Fragment {
                             public void onComplete(@NonNull Task<Uri> task) {
                                 if (task.isSuccessful()) {
                                     Uri downloadUri = task.getResult();
-                                    profilepicUri = String.valueOf(downloadUri);
-                                    Log.d("Profile picture download uri: ", profilepicUri);
+                                    Log.d("Profile picture download uri: ", downloadUri.toString());
+
+                                    updateCustomer(db,view,downloadUri.toString());
+
                                 } else {
                                     Log.d(TAG, "Failed to get image download URL");
                                 }
@@ -206,8 +214,10 @@ public class CusProfileFragment extends Fragment {
                             public void onComplete(@NonNull Task<Uri> task) {
                                 if (task.isSuccessful()) {
                                     Uri downloadUri = task.getResult();
-                                    profilepicUri = String.valueOf(downloadUri);
-                                    Log.d("Profile picture download uri: ", profilepicUri);
+                                    Log.d("Profile picture download uri: ", downloadUri.toString());
+
+                                    updateCustomer(db,view,downloadUri.toString());
+
                                 } else {
                                     Log.d(TAG, "Failed to get image download URL");
                                 }
@@ -215,57 +225,59 @@ public class CusProfileFragment extends Fragment {
                         });
                     }
                 }
+                //If image is not changed
+                else {
+                    updateCustomer(db,view,userModel.getProfilepic());
+                }
 
-                userModel.setEmail(edt_email.getText().toString().trim());
-                userModel.setFname(edt_fname.getText().toString().trim());
 
-                Map<String, Object> data = new HashMap<>();
-                data.put("fname", edt_fname.getText().toString().trim());
-                data.put("lname", edt_lname.getText().toString().trim());
-                data.put("email", edt_email.getText().toString().trim());
-                data.put("phone", edt_phone.getText().toString().trim());
-                data.put("profilepic", profilepicUri);
-
-                db.collection("users").document(userModel.getEmail()).set(data)
-                        .addOnSuccessListener(new OnSuccessListener<Void>() {
-                            @Override
-                            public void onSuccess(Void unused) {
-                                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which){
-                                    case DialogInterface.BUTTON_POSITIVE:
-                                        //Yes button clicked
-                                        Intent intent = new Intent(getContext(), MainActivity.class);
-                                        startActivity(intent);
-                                        break;
-                                }
-                            }
-                        };
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                        builder.setMessage("Account updated successfully.").setPositiveButton("Ok", dialogClickListener)
-                                .show();
-                            }
-                        }).addOnFailureListener(new OnFailureListener() {
-                            @Override
-                            public void onFailure(@NonNull Exception e) {
-                                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
-                            @Override
-                            public void onClick(DialogInterface dialog, int which) {
-                                switch (which){
-                                    case DialogInterface.BUTTON_POSITIVE:
-                                        break;
-                                }
-                            }
-                        };
-
-                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
-                        builder.setTitle("Failed to update account.").setMessage("Error: " + String.valueOf(e)).setPositiveButton("Ok", dialogClickListener)
-                                .show();
-                            }
-                        });
-
+//                Map<String, Object> data = new HashMap<>();
+//                data.put("fname", edt_fname.getText().toString().trim());
+//                data.put("lname", edt_lname.getText().toString().trim());
+//                data.put("email", edt_email.getText().toString().trim());
+//                data.put("phone", edt_phone.getText().toString().trim());
+//                data.put("profilepic", profilepicUri);
+//
+//                db.collection("users").document(userModel.getEmail()).set(data)
+//                        .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                            @Override
+//                            public void onSuccess(Void unused) {
+//                                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                switch (which){
+//                                    case DialogInterface.BUTTON_POSITIVE:
+//                                        //Yes button clicked
+//                                        Intent intent = new Intent(getContext(), MainActivity.class);
+//                                        startActivity(intent);
+//                                        break;
+//                                }
+//                            }
+//                        };
+//
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+//                        builder.setMessage("Account updated successfully.").setPositiveButton("Ok", dialogClickListener)
+//                                .show();
+//                            }
+//                        }).addOnFailureListener(new OnFailureListener() {
+//                            @Override
+//                            public void onFailure(@NonNull Exception e) {
+//                                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+//                            @Override
+//                            public void onClick(DialogInterface dialog, int which) {
+//                                switch (which){
+//                                    case DialogInterface.BUTTON_POSITIVE:
+//                                        break;
+//                                }
+//                            }
+//                        };
+//
+//                        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+//                        builder.setTitle("Failed to update account.").setMessage("Error: " + String.valueOf(e)).setPositiveButton("Ok", dialogClickListener)
+//                                .show();
+//                            }
+//                        });
+//
 
             }
 
@@ -297,5 +309,59 @@ public class CusProfileFragment extends Fragment {
                 break;
         }
      }
+
+
+    public void updateCustomer(FirebaseFirestore db,View view,String downloadUri){
+        CollectionReference dbUsers = db.collection("users");
+        DocumentReference documentReference = dbUsers.document(userModel.getDocID());
+
+        userModel.setEmail(edt_email.getText().toString().trim());
+        userModel.setFname(edt_fname.getText().toString().trim());
+        userModel.setLname(edt_lname.getText().toString().trim());
+        userModel.setPhone(parseInt(edt_phone.getText().toString()));
+        userModel.setPassword(edt_password.getText().toString().trim());
+        userModel.setProfilepic(downloadUri);
+
+        documentReference.set(userModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+            @Override
+            public void onSuccess(Void unused) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                //Yes button clicked
+                                Intent intent = new Intent(getContext(),MainActivity.class);
+                                startActivity(intent);
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setMessage("Account Updated successfully.").setPositiveButton("Ok", dialogClickListener)
+                        .show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        switch (which){
+                            case DialogInterface.BUTTON_POSITIVE:
+                                break;
+                        }
+                    }
+                };
+
+                AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext());
+                builder.setTitle("Failed to update account.").setMessage("Error: " + String.valueOf(e)).setPositiveButton("Ok", dialogClickListener)
+                        .show();
+            }
+        });
+
+    }
+
 
 }
