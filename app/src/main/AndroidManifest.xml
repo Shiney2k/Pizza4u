@@ -14,14 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pizza4u">
         <activity
-            android:name=".EmployeeMainActivity"
+            android:name=".activities.EmployeeMainActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".AddEmployeeActivity"
+            android:name=".activities.AddEmployeeActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

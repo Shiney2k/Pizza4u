@@ -374,8 +374,7 @@ public class AddEmployeeActivity extends AppCompatActivity {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 //Yes button clicked
-                                Intent intent = new Intent(AddEmployeeActivity.this,ManagerMainActivity.class);
-                                startActivity(intent);
+                                finish();
                                 break;
                         }
                     }
