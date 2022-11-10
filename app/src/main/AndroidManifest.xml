@@ -14,34 +14,34 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pizza4u">
         <activity
-            android:name=".AddBranchLocationInstructionsActivity"
+            android:name=".activities.AddBranchLocationInstructionsActivity"
             android:exported="false" />
         <activity
-            android:name=".EmployeeRegActivity"
+            android:name=".activities.EmployeeRegActivity"
             android:exported="false" />
         <activity
-            android:name=".SignInActivity"
+            android:name=".activities.SignInActivity"
             android:exported="false" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".activities.SignUpActivity"
             android:exported="false" />
         <activity
-            android:name=".AddBranchActivity"
+            android:name=".activities.AddBranchActivity"
             android:exported="false" />
         <activity
-            android:name=".ManagerMainActivity"
+            android:name=".activities.ManagerMainActivity"
             android:exported="false" />
         <activity
-            android:name=".CustomerMainActivity"
+            android:name=".activities.CustomerMainActivity"
             android:exported="false"></activity>
         <activity
-            android:name=".CusOrderActivity"
+            android:name=".activities.CusOrderActivity"
             android:exported="false"></activity>
         <activity
-            android:name=".CusPizzaViewActivity"
+            android:name=".activities.CusPizzaViewActivity"
             android:exported="false"></activity>
         <activity
-            android:name=".CusPizzaListActivity"
+            android:name=".activities.CusPizzaListActivity"
             android:exported="false"></activity>
         <activity
             android:name=".MainActivity"

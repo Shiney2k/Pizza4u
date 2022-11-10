@@ -1,8 +1,10 @@
-package com.pizza4u;
+package com.pizza4u.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+
+import com.pizza4u.R;
 
 public class EmployeeRegActivity extends AppCompatActivity {
 

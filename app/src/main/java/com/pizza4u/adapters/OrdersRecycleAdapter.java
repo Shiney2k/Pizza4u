@@ -1,4 +1,4 @@
-package com.pizza4u;
+package com.pizza4u.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
@@ -11,6 +11,9 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
+
+import com.pizza4u.R;
+import com.pizza4u.activities.CusOrderActivity;
 
 import java.util.ArrayList;
 
@@ -48,7 +51,7 @@ public class OrdersRecycleAdapter extends RecyclerView.Adapter<OrdersRecycleAdap
         holder.oLayout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent=new Intent(mContext,CusOrderActivity.class);
+                Intent intent=new Intent(mContext, CusOrderActivity.class);
                 intent.putExtra("orderId",String.valueOf(orderid.get(position)));
                 intent.putExtra("price",String.valueOf(price.get(position)));
                 //intent.putExtra("date",String.valueOf(date.get(position)));

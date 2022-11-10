@@ -1,4 +1,4 @@
-package com.pizza4u;
+package com.pizza4u.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,6 +7,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
+
+import com.pizza4u.adapters.OrderItemsRecycleAdapter;
+import com.pizza4u.R;
 
 import java.util.ArrayList;
 

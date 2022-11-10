@@ -1,11 +1,10 @@
-package com.pizza4u;
+package com.pizza4u.fragments;
 
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -14,6 +13,8 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.pizza4u.R;
+import com.pizza4u.adapters.CartRecycleAdapter;
 import com.pizza4u.models.CartItemModel;
 
 import java.util.ArrayList;

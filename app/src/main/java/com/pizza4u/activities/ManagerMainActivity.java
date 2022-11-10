@@ -1,29 +1,18 @@
-package com.pizza4u;
-
-import static android.content.ContentValues.TAG;
+package com.pizza4u.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.content.ContentUris;
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.pizza4u.R;
 import com.pizza4u.models.UserModel;
 import com.squareup.picasso.Picasso;
-
-import java.io.BufferedInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.URI;
-import java.net.URL;
-import java.net.URLConnection;
 
 public class ManagerMainActivity extends AppCompatActivity {
     ImageView imageViewManager;

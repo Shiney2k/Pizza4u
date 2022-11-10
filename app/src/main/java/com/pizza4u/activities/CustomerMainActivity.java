@@ -1,15 +1,11 @@
-package com.pizza4u;
-
-import static android.content.ContentValues.TAG;
+package com.pizza4u.activities;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -22,6 +18,11 @@ import com.google.android.material.navigation.NavigationBarView;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.pizza4u.fragments.CusCartFragment;
+import com.pizza4u.fragments.CusHomeFragment;
+import com.pizza4u.fragments.CusOrdersFragment;
+import com.pizza4u.fragments.CusProfileFragment;
+import com.pizza4u.R;
 import com.pizza4u.models.CartItemModel;
 import com.pizza4u.models.OrderItemModel;
 import com.pizza4u.models.OrderModel;

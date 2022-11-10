@@ -1,4 +1,4 @@
-package com.pizza4u;
+package com.pizza4u.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -11,6 +11,9 @@ import android.os.Bundle;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
+import com.pizza4u.fragments.CustomerFragment;
+import com.pizza4u.fragments.ManagerFragment;
+import com.pizza4u.R;
 
 public class SignUpActivity extends AppCompatActivity {
 

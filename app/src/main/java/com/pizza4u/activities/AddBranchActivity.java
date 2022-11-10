@@ -1,4 +1,4 @@
-package com.pizza4u;
+package com.pizza4u.activities;
 
 import static android.content.ContentValues.TAG;
 
@@ -20,6 +20,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
+import com.pizza4u.R;
 
 import java.util.HashMap;
 import java.util.Locale;

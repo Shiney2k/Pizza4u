@@ -1,4 +1,4 @@
-package com.pizza4u;
+package com.pizza4u.adapters;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
@@ -12,8 +12,10 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pizza4u.R;
+import com.pizza4u.activities.CusPizzaViewActivity;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class PizzasRecycleAdapter extends RecyclerView.Adapter<PizzasRecycleAdapter.PizzasViewHolder>{
 
@@ -47,7 +49,7 @@ public class PizzasRecycleAdapter extends RecyclerView.Adapter<PizzasRecycleAdap
         //pholder.img.setImageResource();
 
         pholder.pLayout.setOnClickListener(view -> {
-            Intent intent = new Intent(mContext,CusPizzaViewActivity.class);
+            Intent intent = new Intent(mContext, CusPizzaViewActivity.class);
             intent.putExtra("name",String.valueOf(name.get(position)));
             intent.putExtra("description",String.valueOf(description.get(position)));
             intent.putExtra("price",String.valueOf(price.get(position)));

@@ -1,4 +1,4 @@
-package com.pizza4u;
+package com.pizza4u.activities;
 
 import static android.content.ContentValues.TAG;
 
@@ -9,21 +9,19 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
+import com.pizza4u.MainActivity;
+import com.pizza4u.R;
 import com.pizza4u.models.UserModel;
-
-import java.util.Map;
 
 public class SignInActivity extends AppCompatActivity {
 
@@ -126,7 +124,7 @@ public class SignInActivity extends AppCompatActivity {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 //Yes button clicked
-                                Intent intent = new Intent(SignInActivity.this,MainActivity.class);
+                                Intent intent = new Intent(SignInActivity.this, MainActivity.class);
                                 startActivity(intent);
                                 break;
 

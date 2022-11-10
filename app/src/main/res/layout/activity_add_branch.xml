@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@android:color/holo_orange_light"
     android:visibility="visible"
-    tools:context=".AddBranchActivity">
+    tools:context=".activities.AddBranchActivity">
 
     <TextView
         android:id="@+id/textBranchRegistration"

@@ -1,4 +1,4 @@
-package com.pizza4u;
+package com.pizza4u.fragments;
 
 import static android.app.Activity.RESULT_OK;
 import static android.content.ContentValues.TAG;
@@ -33,6 +33,8 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
+import com.pizza4u.MainActivity;
+import com.pizza4u.R;
 
 import java.io.ByteArrayOutputStream;
 import java.util.HashMap;
@@ -132,7 +134,7 @@ public class CustomerFragment extends Fragment {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 //Yes button clicked
-                                Intent intent = new Intent(getContext(),MainActivity.class);
+                                Intent intent = new Intent(getContext(), MainActivity.class);
                                 startActivity(intent);
                                 break;
 

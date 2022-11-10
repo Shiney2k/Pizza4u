@@ -1,9 +1,8 @@
-package com.pizza4u;
+package com.pizza4u.adapters;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
-import android.graphics.drawable.Drawable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,8 +13,10 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.pizza4u.R;
+import com.pizza4u.activities.CusPizzaListActivity;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class PizzaTypeRecycleAdapter extends RecyclerView.Adapter<PizzaTypeRecycleAdapter.PTypesViewHolder> {
 
@@ -45,7 +46,7 @@ public class PizzaTypeRecycleAdapter extends RecyclerView.Adapter<PizzaTypeRecyc
         holder.txtPtype.setText(String.valueOf(ptype.get(position)));
 
         holder.ptypesLayout.setOnClickListener(view -> {
-            Intent intent = new Intent(mContext,CusPizzaListActivity.class);
+            Intent intent = new Intent(mContext, CusPizzaListActivity.class);
             intent.putExtra("ptype",String.valueOf(ptype.get(position)));
             mContext.startActivity(intent);
         });

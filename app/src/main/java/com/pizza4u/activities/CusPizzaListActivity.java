@@ -1,19 +1,17 @@
-package com.pizza4u;
+package com.pizza4u.activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
-import android.database.Cursor;
 import android.os.Bundle;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.pizza4u.adapters.PizzasRecycleAdapter;
+import com.pizza4u.R;
+
 import java.util.ArrayList;
-import java.util.List;
 
 public class CusPizzaListActivity extends AppCompatActivity {
 

@@ -1,7 +1,5 @@
-package com.pizza4u;
+package com.pizza4u.fragments;
 
-import android.content.Context;
-import android.database.Cursor;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,10 +9,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.pizza4u.R;
+import com.pizza4u.adapters.PizzaTypeRecycleAdapter;
 
 import java.util.ArrayList;
 
