@@ -20,4 +20,6 @@ local.properties
 app/google-services.json
 .idea
 build.gradle
-gradle/wrapper/gradle-wrapper.properties
+/gradle
+gradle.properties
+settings.gradle
