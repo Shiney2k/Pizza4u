@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/orderItemLayout"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/emp_orderItemLayout"
     android:layout_marginTop="10dp">
 
     <androidx.cardview.widget.CardView
@@ -24,7 +24,7 @@
             tools:layout_editor_absoluteY="0dp">
 
             <TextView
-                android:id="@+id/txtCount"
+                android:id="@+id/txtCount_emp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="sans-serif"
@@ -36,10 +36,10 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtSize"
+                android:id="@+id/txtSize_emp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="0dp"
+                android:layout_marginEnd="40dp"
                 android:fontFamily="sans-serif"
                 android:text="Small"
                 android:textSize="18dp"
@@ -61,7 +61,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/txtName"
+                android:id="@+id/txtName_emp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:fontFamily="@font/belleza"
@@ -76,7 +76,7 @@
                 app:layout_constraintVertical_bias="0.0" />
 
             <TextView
-                android:id="@+id/txtPrice"
+                android:id="@+id/txtPrice_emp"
                 android:layout_width="146dp"
                 android:layout_height="21dp"
                 android:ems="10"
@@ -105,5 +105,6 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

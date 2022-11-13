@@ -83,10 +83,16 @@
     <string name="pizza_size">Small</string>
     <string name="password">Password</string>
     <string name="text_add_emp">Add New Employee</string>
-
     <string-array name="sizes">
         <item>Small</item>
         <item>Medium</item>
         <item>Large</item>
+    </string-array>
+
+    <string-array name="change_status">
+        <item>Queued</item>
+        <item>Preparing</item>
+        <item>Delivering</item>
+        <item>Completed</item>
     </string-array>
 </resources>

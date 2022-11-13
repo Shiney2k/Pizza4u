@@ -14,6 +14,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pizza4u">
         <activity
+            android:name=".EmpOrderActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".CheckOrdersActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activities.EmployeeMainActivity"
             android:exported="false">
             <meta-data
@@ -29,7 +43,11 @@
         </activity>
         <activity
             android:name=".activities.AddBranchLocationInstructionsActivity"
-            android:exported="false" />
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".activities.EmployeeRegActivity"
             android:exported="false" />

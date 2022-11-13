@@ -22,6 +22,8 @@ public class ManagerMainActivity extends AppCompatActivity {
     Button buttonAddEmployee;
     Button buttonAddMenu;
     TextView txtManagerName;
+    
+
 
     @SuppressLint({"MissingInflatedId", "SetTextI18n"})
     @Override
@@ -40,25 +42,26 @@ public class ManagerMainActivity extends AppCompatActivity {
             Log.d("UserData from Manager Home", userModel.getEmail() + " " + userModel.getFname());
 
 
-            Picasso.get().load(userModel.getProfilepic()).into(imageViewManager);
-            txtManagerName.setText(userModel.getFname() + " " + userModel.getLname());
+        Picasso.get().load(userModel.getProfilepic()).into(imageViewManager);
+        txtManagerName.setText(userModel.getFname()+" "+userModel.getLname());
 
+      
 
-            buttonAddBranch.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(ManagerMainActivity.this, AddBranchActivity.class);
-                    startActivity(intent);
-                }
-            });
+        buttonAddBranch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ManagerMainActivity.this , AddBranchActivity.class);
+                startActivity(intent);
+            }
+        });
 
-            buttonAddEmployee.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Intent intent = new Intent(ManagerMainActivity.this, AddEmployeeActivity.class);
-                    startActivity(intent);
-                }
-            });
+        buttonAddEmployee.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ManagerMainActivity.this , AddEmployeeActivity.class);
+                startActivity(intent);
+            }
+        });
         }
     }
 }

@@ -42,8 +42,8 @@ public class EmployeeMainActivity extends AppCompatActivity {
         buttonCheckOrders.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-//                Intent intent = new Intent(EmployeeMainActivity.this , CheckOrdersActivity.class);
-//                startActivity(intent);
+                Intent intent = new Intent(EmployeeMainActivity.this , CheckOrdersActivity.class);
+                startActivity(intent);
             }
         });
 

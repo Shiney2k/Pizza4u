@@ -16,29 +16,30 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pizza4u.R;
 import com.pizza4u.adapters.CusOrderItemsRecycleAdapter;
+import com.pizza4u.adapters.EmpOrderItemsRecycleAdapter;
 import com.pizza4u.models.OrderItemModel;
 import com.pizza4u.models.UserModel;
 
 import java.util.ArrayList;
 
-public class CusOrderActivity extends AppCompatActivity {
+public class EmpOrderActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    UserModel userModel;
     ArrayList<OrderItemModel> orderItemModelArrayList;
-    CusOrderItemsRecycleAdapter orderItemsRecycleAdapter;
+    EmpOrderItemsRecycleAdapter orderItemsRecycleAdapter;
     private String orderid,tot;
     private TextView txtOrderid,txttot;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cus_order);
+        setContentView(R.layout.activity_emp_order);
 
-        txtOrderid = findViewById(R.id.txt_orderId);
-        txttot = findViewById(R.id.txt_totalPrice);
-        recyclerView = findViewById(R.id.recycler_orderItems);
+        txtOrderid = findViewById(R.id.txt_orderId_emp);
+        txttot = findViewById(R.id.txt_totalPrice_emp);
+        recyclerView = findViewById(R.id.recycler_orderItems_emp);
 
         orderid=getIntent().getStringExtra("orderId");
         tot=getIntent().getStringExtra("price");
@@ -49,7 +50,6 @@ public class CusOrderActivity extends AppCompatActivity {
         orderItemModelArrayList=new ArrayList<>();
 
         db.collection("orders")
-                .whereEqualTo("userEmail",userModel.getEmail())
                 .whereEqualTo("orderID",orderid)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -74,10 +74,9 @@ public class CusOrderActivity extends AppCompatActivity {
                 });
 
 
-        orderItemsRecycleAdapter = new CusOrderItemsRecycleAdapter(CusOrderActivity.this,orderItemModelArrayList);
+        orderItemsRecycleAdapter = new EmpOrderItemsRecycleAdapter(EmpOrderActivity.this,orderItemModelArrayList);
         recyclerView.setAdapter(orderItemsRecycleAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(CusOrderActivity.this));
-
+        recyclerView.setLayoutManager(new LinearLayoutManager(EmpOrderActivity.this));
 
     }
 }

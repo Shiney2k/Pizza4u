@@ -1,5 +1,7 @@
 package com.pizza4u.activities;
 
+import static java.security.AccessController.getContext;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -7,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
-import android.widget.TextView;
+import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -15,42 +17,33 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pizza4u.R;
-import com.pizza4u.adapters.CusOrderItemsRecycleAdapter;
-import com.pizza4u.models.OrderItemModel;
+import com.pizza4u.adapters.CusOrdersRecycleAdapter;
+import com.pizza4u.adapters.EmpOrderRecycleAdapter;
+import com.pizza4u.models.OrderModel;
 import com.pizza4u.models.UserModel;
 
 import java.util.ArrayList;
 
-public class CusOrderActivity extends AppCompatActivity {
+public class CheckOrdersActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerView;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private View view;
     UserModel userModel;
-    ArrayList<OrderItemModel> orderItemModelArrayList;
-    CusOrderItemsRecycleAdapter orderItemsRecycleAdapter;
-    private String orderid,tot;
-    private TextView txtOrderid,txttot;
+    private RecyclerView recyclerView;
+    ArrayList<OrderModel> orderModelArrayList;
+    EmpOrderRecycleAdapter ordersRecycleAdapter;
+    FirebaseFirestore db =FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cus_order);
+        setContentView(R.layout.activity_check_orders);
 
-        txtOrderid = findViewById(R.id.txt_orderId);
-        txttot = findViewById(R.id.txt_totalPrice);
-        recyclerView = findViewById(R.id.recycler_orderItems);
 
-        orderid=getIntent().getStringExtra("orderId");
-        tot=getIntent().getStringExtra("price");
+        recyclerView = view.findViewById(R.id.recycler_orders);
 
-        txttot.setText(tot);
-        txtOrderid.setText(orderid);
-
-        orderItemModelArrayList=new ArrayList<>();
+        orderModelArrayList=new ArrayList<>();
 
         db.collection("orders")
-                .whereEqualTo("userEmail",userModel.getEmail())
-                .whereEqualTo("orderID",orderid)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @SuppressLint("NotifyDataSetChanged")
@@ -63,9 +56,9 @@ public class CusOrderActivity extends AppCompatActivity {
                                     String documentid = document.getId();
                                     // Log.d("Email", email);
 
-                                    OrderItemModel orderItemModel = document.toObject(OrderItemModel.class);
-                                    orderItemModelArrayList.add(orderItemModel);
-                                    orderItemsRecycleAdapter.notifyDataSetChanged();
+                                    OrderModel orderModel = document.toObject(OrderModel.class);
+                                    orderModelArrayList.add(orderModel);
+                                    ordersRecycleAdapter.notifyDataSetChanged();
 
                                 }
                             }}
@@ -73,10 +66,9 @@ public class CusOrderActivity extends AppCompatActivity {
 
                 });
 
-
-        orderItemsRecycleAdapter = new CusOrderItemsRecycleAdapter(CusOrderActivity.this,orderItemModelArrayList);
-        recyclerView.setAdapter(orderItemsRecycleAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(CusOrderActivity.this));
+        ordersRecycleAdapter = new EmpOrderRecycleAdapter(this, orderModelArrayList);
+        recyclerView.setAdapter(ordersRecycleAdapter);
+        recyclerView.setLayoutManager(new LinearLayoutManager(this));
 
 
     }

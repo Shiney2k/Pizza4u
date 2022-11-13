@@ -20,7 +20,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pizza4u.R;
-import com.pizza4u.adapters.OrdersRecycleAdapter;
+import com.pizza4u.adapters.CusOrdersRecycleAdapter;
 import com.pizza4u.models.OrderModel;
 import com.pizza4u.models.UserModel;
 
@@ -33,7 +33,7 @@ public class CusOrdersFragment extends Fragment {
     UserModel userModel;
     private RecyclerView recyclerView;
     ArrayList<OrderModel> orderModelArrayList;
-    OrdersRecycleAdapter ordersRecycleAdapter;
+    CusOrdersRecycleAdapter ordersRecycleAdapter;
     FirebaseFirestore db =FirebaseFirestore.getInstance();
 
     public CusOrdersFragment() {
@@ -93,7 +93,7 @@ public class CusOrdersFragment extends Fragment {
 
                 });
 
-        ordersRecycleAdapter = new OrdersRecycleAdapter(getContext(), orderModelArrayList);
+        ordersRecycleAdapter = new CusOrdersRecycleAdapter(getContext(), orderModelArrayList);
         recyclerView.setAdapter(ordersRecycleAdapter);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
 

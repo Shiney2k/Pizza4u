@@ -12,29 +12,28 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.pizza4u.R;
-import com.pizza4u.activities.CusOrderActivity;
 import com.pizza4u.models.OrderItemModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class OrderItemsRecycleAdapter extends RecyclerView.Adapter<OrderItemsRecycleAdapter.OrderItemsViewHolder> {
+public class EmpOrderItemsRecycleAdapter extends RecyclerView.Adapter<EmpOrderItemsRecycleAdapter.OrderItemsViewHolder>{
 
     Context mContext;
     private List<OrderItemModel> orderItemModelList;
     private int position;
 
-    public OrderItemsRecycleAdapter(CusOrderActivity mContext, List<OrderItemModel> orderItemModelArrayList) {
-        this.mContext=mContext;
-        this.orderItemModelList=orderItemModelArrayList;
+    public EmpOrderItemsRecycleAdapter(Context mContext, List<OrderItemModel> orderItemModelList) {
+        this.mContext = mContext;
+        this.orderItemModelList = orderItemModelList;
     }
+
 
     @NonNull
     @Override
     public OrderItemsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.layout_cus_order_item,parent,false);
-        return new OrderItemsRecycleAdapter.OrderItemsViewHolder(view);
+        return new EmpOrderItemsRecycleAdapter.OrderItemsViewHolder(view);
     }
 
     @Override
@@ -45,7 +44,6 @@ public class OrderItemsRecycleAdapter extends RecyclerView.Adapter<OrderItemsRec
         holder.txtPrice.setText(String.valueOf(orderItemModelList.get(position).getSubTotal()));
         holder.txtCount.setText(String.valueOf(orderItemModelList.get(position).getCount()));
         holder.txtSize.setText(String.valueOf(orderItemModelList.get(position).getSize()));
-
     }
 
     @Override
@@ -61,10 +59,10 @@ public class OrderItemsRecycleAdapter extends RecyclerView.Adapter<OrderItemsRec
         public OrderItemsViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            txtName=itemView.findViewById(R.id.txtName);
-            txtPrice=itemView.findViewById(R.id.txtPrice);
-            txtCount=itemView.findViewById(R.id.txtCount);
-            txtSize=itemView.findViewById(R.id.txtPizzaSize);
+            txtName=itemView.findViewById(R.id.txtName_emp);
+            txtPrice=itemView.findViewById(R.id.txtPrice_emp);
+            txtCount=itemView.findViewById(R.id.txtCount_emp);
+            txtSize=itemView.findViewById(R.id.txtSize_emp);
 
         }
     }
