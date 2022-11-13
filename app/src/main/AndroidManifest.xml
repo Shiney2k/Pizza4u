@@ -14,14 +14,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pizza4u">
         <activity
-            android:name=".EmpOrderActivity"
+            android:name=".activities.EmpOrderActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
         <activity
-            android:name=".CheckOrdersActivity"
+            android:name=".activities.CheckOrdersActivity"
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"

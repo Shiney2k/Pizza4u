@@ -19,3 +19,5 @@ local.properties
 .idea/misc.xml
 app/google-services.json
 .idea
+build.gradle
+gradle/wrapper/gradle-wrapper.properties
