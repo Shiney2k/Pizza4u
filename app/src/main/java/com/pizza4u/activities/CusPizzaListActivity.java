@@ -29,7 +29,7 @@ public class CusPizzaListActivity extends AppCompatActivity {
     PizzasRecycleAdapter pizzasRecycleAdapter;
     FirebaseFirestore db =FirebaseFirestore.getInstance();
     private TextView txtpType;
-    private String pType,typeID;
+    private String pType;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -40,11 +40,10 @@ public class CusPizzaListActivity extends AppCompatActivity {
         txtpType = findViewById(R.id.txtPizzaType);
         recyclerView = findViewById(R.id.recyclerPList);
 
-        getIntent().hasExtra("pType") ;
+        getIntent().hasExtra("pTypeName") ;
 
         // getting data from intent
-        pType = getIntent().getStringExtra("pType");
-        typeID=getIntent().getStringExtra("ptypeID");
+        pType = getIntent().getStringExtra("pTypeName");
 
         // setting intent data
         txtpType.setText(pType);

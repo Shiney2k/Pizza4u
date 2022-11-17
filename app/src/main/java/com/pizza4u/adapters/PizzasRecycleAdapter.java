@@ -18,14 +18,12 @@ import com.pizza4u.R;
 import com.pizza4u.models.PizzaModel;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class PizzasRecycleAdapter extends RecyclerView.Adapter<PizzasRecycleAdapter.PizzasViewHolder>{
 
     Context mContext;
     private List<PizzaModel> pizzaModelList;
-    private int position;
 
     public PizzasRecycleAdapter(CusPizzaListActivity mContext, List<PizzaModel> pizzaModelList) {
         this.mContext=mContext;
@@ -43,7 +41,6 @@ public class PizzasRecycleAdapter extends RecyclerView.Adapter<PizzasRecycleAdap
 
     @Override
     public void onBindViewHolder(@NonNull PizzasViewHolder pholder, @SuppressLint("RecyclerView") int position) {
-        this.position =position;
 
         pholder.txtName.setText(pizzaModelList.get(position).getName());
         pholder.txtDescription.setText(pizzaModelList.get(position).getDescription());

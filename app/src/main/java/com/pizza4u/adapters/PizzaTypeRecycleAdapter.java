@@ -50,7 +50,6 @@ public class PizzaTypeRecycleAdapter extends RecyclerView.Adapter<PizzaTypeRecyc
 
         holder.ptypesLayout.setOnClickListener(view -> {
             Intent intent = new Intent(mContext, CusPizzaListActivity.class);
-            intent.putExtra("ptypeID",pizzaTypeModelList.get(position).getTypeID());
             intent.putExtra("ptypeName",pizzaTypeModelList.get(position).getTypeName());
             mContext.startActivity(intent);
         });

@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:layout_height="250dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/pizzaLayout"
-    android:layout_marginTop="5dp"
-    android:layout_marginStart="5dp">
+    android:layout_marginTop="5dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
@@ -21,8 +20,8 @@
         app:cardMaxElevation="120dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="397dp"
-            android:layout_height="176dp"
+            android:layout_width="376dp"
+            android:layout_height="wrap_content"
             android:background="#EFEFEF">
 
             <TextView
@@ -33,17 +32,13 @@
                 android:text="@string/text_pizza"
                 android:textSize="18dp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.053"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.793" />
+                app:layout_constraintTop_toBottomOf="@+id/imagePizza"
+                app:layout_constraintVertical_bias="0.931" />
 
             <ImageView
                 android:id="@+id/imagePizza"
-                android:layout_width="397dp"
-                android:layout_height="123dp"
+                android:layout_width="376dp"
+                android:layout_height="118dp"
                 android:layout_marginEnd="170dp"
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
@@ -56,18 +51,15 @@
 
             <TextView
                 android:id="@+id/txtPizzaDescription"
-                android:layout_width="376dp"
-                android:layout_height="30dp"
+                android:layout_width="360dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="16dp"
                 android:ems="10"
                 android:gravity="start|top"
                 android:text="@string/pizza_description"
-                android:textSize="10dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.761"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/imagePizza"
-                app:layout_constraintVertical_bias="1.0" />
+                android:textSize="13dp"
+                app:layout_constraintStart_toStartOf="@id/txtPizza"
+                app:layout_constraintTop_toBottomOf="@+id/txtPizza" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

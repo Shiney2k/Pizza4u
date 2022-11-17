@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/types"
+        android:title="@string/item_pizza_types"
+        android:icon="@drawable/icon_pizza_type"/>
+    <item android:id="@+id/pizzas"
+        android:title="@string/item_pizzas"
+        android:icon="@drawable/icon_pizza"/>
+</menu>

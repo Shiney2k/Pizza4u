@@ -26,8 +26,6 @@ import java.util.ArrayList;
 
 public class CheckOrdersActivity extends AppCompatActivity {
 
-    private View view;
-    UserModel userModel;
     private RecyclerView recyclerView;
     ArrayList<OrderModel> orderModelArrayList;
     EmpOrderRecycleAdapter ordersRecycleAdapter;
@@ -38,8 +36,7 @@ public class CheckOrdersActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_check_orders);
 
-
-        recyclerView = view.findViewById(R.id.recycler_orders);
+        recyclerView = findViewById(R.id.recycler_orders_employee);
 
         orderModelArrayList=new ArrayList<>();
 

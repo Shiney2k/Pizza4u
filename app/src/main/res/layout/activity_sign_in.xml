@@ -6,81 +6,106 @@
     android:layout_height="match_parent"
     tools:context=".activities.SignInActivity">
 
-
-    <ImageView
-        android:id="@+id/signinIcon"
-        android:layout_width="250dp"
-        android:layout_height="250dp"
-        android:contentDescription="@string/app_icon_description"
-        app:layout_constraintBottom_toTopOf="@+id/buttonSignIn2"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextPasswordSignIn"
-        app:srcCompat="@drawable/customer_icon" />
-
-    <Button
-        android:id="@+id/buttonCancelSignIn"
-        android:layout_width="300dp"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="?android:attr/colorBackground"
-        android:text="@string/button_cancel"
-        android:textColor="?android:attr/textColorTertiary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:rippleColor="?android:attr/colorActivatedHighlight" />
-
-    <Button
-        android:id="@+id/buttonSignIn2"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginBottom="20dp"
-        android:backgroundTint="@color/colorPrimary"
-        android:text="@string/button_sign_in"
-        android:textColor="@color/colorOnPrimary"
-        app:layout_constraintBottom_toTopOf="@+id/buttonCancelSignIn"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <EditText
-        android:id="@+id/editTextPasswordSignIn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
+        android:elevation="8dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:cardMaxElevation="120dp"
         android:layout_marginTop="20dp"
-        android:ems="10"
-        android:hint="@string/edit_text_password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextEmailSignIn" />
-
-    <EditText
-        android:id="@+id/editTextEmailSignIn"
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_gravity="center_horizontal"
-        android:layout_marginTop="60dp"
-        android:ems="10"
-        android:hint="@string/edit_text_email"
-        android:inputType="textEmailAddress"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textSignInTitle" />
-
-    <TextView
-        android:id="@+id/textSignInTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/sign_in"
-        android:textSize="24sp"
+        android:layout_marginBottom="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.15"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.06999999" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/pizzapic"
+            android:backgroundTintMode="src_over"
+            android:backgroundTint="#DF0E0E0E">
+
+            <Button
+                android:id="@+id/buttonCancelSignIn"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginBottom="108dp"
+                android:backgroundTint="?android:attr/colorBackground"
+                android:text="@string/button_cancel"
+                android:textColor="?android:attr/textColorTertiary"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:rippleColor="?android:attr/colorActivatedHighlight" />
+
+            <Button
+                android:id="@+id/buttonSignIn2"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="250dp"
+                android:layout_marginBottom="36dp"
+                android:backgroundTint="@color/colorPrimary"
+                android:text="@string/button_sign_in"
+                android:textColor="@color/colorOnPrimary"
+                app:layout_constraintBottom_toTopOf="@+id/buttonCancelSignIn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textSignInTitle"
+                app:layout_constraintVertical_bias="1.0" />
+
+            <EditText
+                android:id="@+id/editTextPasswordSignIn"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:hint="@string/edit_text_password"
+                android:inputType="textPassword"
+                android:minHeight="48dp"
+                android:textColor="@color/white"
+                android:textColorHint="#787878"
+                app:layout_constraintBottom_toTopOf="@+id/buttonSignIn2"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextEmailSignIn"
+                app:layout_constraintVertical_bias="0.398" />
+
+            <EditText
+                android:id="@+id/editTextEmailSignIn"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:ems="10"
+                android:hint="@string/edit_text_email"
+                android:inputType="textEmailAddress"
+                android:minHeight="48dp"
+                android:textColor="@color/white"
+                android:textColorHint="#787878"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.319"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/textSignInTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/sign_in"
+                android:textColor="@color/white"
+                android:textSize="30sp"
+                app:layout_constraintBottom_toTopOf="@+id/editTextEmailSignIn"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.cardview.widget.CardView>
 </androidx.constraintlayout.widget.ConstraintLayout>

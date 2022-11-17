@@ -21,5 +21,7 @@
     <string name="pizza_size">Small</string>
     <string name="password">Password</string>
     <string name="text_add_emp">Add New Employee</string>
+    <string name="item_pizza_types">Pizza Types</string>
+    <string name="item_pizzas">Pizzas</string>
 
 </resources>

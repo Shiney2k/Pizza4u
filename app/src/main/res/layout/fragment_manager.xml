@@ -6,6 +6,23 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.ManagerFragment">
 
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cardView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="8dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="10dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginEnd="15dp"
+        app:cardMaxElevation="120dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -14,7 +31,10 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="0.0"
+        android:background="@drawable/pizzapic"
+        android:backgroundTintMode="src_over"
+        android:backgroundTint="#D3F1F0F0">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -25,6 +45,7 @@
                 android:id="@+id/textSignUpTitleManager"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textColor="#FF5722"
                 android:layout_marginLeft="40dp"
                 android:layout_marginTop="40dp"
                 android:text="@string/text_sign_up_manager"
@@ -33,6 +54,8 @@
             <EditText
                 android:id="@+id/editTextFirstNameManager"
                 android:layout_width="300dp"
+                android:textColor="#FF5722"
+                android:textColorHint="#919090"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
@@ -43,6 +66,8 @@
             <EditText
                 android:id="@+id/editTextLastNameManager"
                 android:layout_width="300dp"
+                android:textColor="#FF5722"
+                android:textColorHint="#919090"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
@@ -53,6 +78,8 @@
             <EditText
                 android:id="@+id/editTextEmailManager"
                 android:layout_width="300dp"
+                android:textColor="#FF5722"
+                android:textColorHint="#919090"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
@@ -64,6 +91,8 @@
                 android:id="@+id/editTextPhoneManager"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:textColor="#FF5722"
+                android:textColorHint="#919090"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:ems="10"
@@ -73,6 +102,8 @@
             <EditText
                 android:id="@+id/editTextPasswordManager"
                 android:layout_width="300dp"
+                android:textColor="#FF5722"
+                android:textColorHint="#919090"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
@@ -84,6 +115,8 @@
                 android:id="@+id/editTextBranchIdManager"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
+                android:textColor="#FF5722"
+                android:textColorHint="#919090"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:ems="10"
@@ -97,6 +130,8 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
                 android:ems="10"
+                android:textColor="#FF5722"
+                android:textColorHint="#919090"
                 android:hint="@string/edit_text_employee_id"
                 android:inputType="numberDecimal" />
 
@@ -114,6 +149,8 @@
             <ImageView
                 android:id="@+id/profilepicManager"
                 android:layout_width="150dp"
+                android:textColor="#FF5722"
+                android:textColorHint="#919090"
                 android:layout_height="150dp"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="20dp"
@@ -145,5 +182,5 @@
 
         </LinearLayout>
     </ScrollView>
-
+    </androidx.cardview.widget.CardView>
 </FrameLayout>
