@@ -3,10 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_marginTop="10dp"
-    android:layout_marginStart="50dp"
-    android:layout_marginEnd="50dp"
+    android:layout_height="130dp"
+    android:layout_marginTop="2dp"
+    android:layout_centerVertical="true"
     android:id="@+id/layout_orderContainer">
 
 
@@ -16,9 +15,14 @@
         android:background="#EFEFEF"
         android:elevation="8dp"
         app:cardCornerRadius="20dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginEnd="50dp"
         app:cardElevation="10dp"
         app:cardMaxElevation="120dp"
-        tools:ignore="MissingConstraints"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="-4dp">
 
@@ -48,7 +52,7 @@
             android:layout_marginStart="10dp"
             android:gravity="start|top"
             android:text="Order 1 :"
-            android:textSize="18dp"
+            android:textSize="16dp"
             android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
@@ -118,7 +122,7 @@
             android:layout_marginBottom="32dp"
             android:ems="10"
             android:gravity="start|top"
-            android:text="Price(Rs)             :"
+            android:text="Price(Rs)              :"
             android:textSize="12dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"

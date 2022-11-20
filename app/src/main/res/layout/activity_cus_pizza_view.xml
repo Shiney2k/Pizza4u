@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#FFFAE7"
     tools:context=".activities.CusPizzaViewActivity">
 
     <ImageView
@@ -25,12 +26,14 @@
         android:text="Rs 1679"
         android:textColor="@color/black"
         android:textSize="30dp"
+        android:layout_marginStart="10dp"
         app:layout_constraintBottom_toTopOf="@+id/txtPizzaName"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.053"
         app:layout_constraintStart_toStartOf="@+id/imgPizza"
         app:layout_constraintTop_toTopOf="@+id/imgPizza"
-        app:layout_constraintVertical_bias="0.947" />
+        app:layout_constraintVertical_bias="0.939" />
+
 
     <TextView
         android:id="@+id/txtPizzaName"
@@ -41,7 +44,7 @@
         android:gravity="center_vertical"
         android:text="Texas BBQ Chicken"
         android:textColor="#6A6A6A"
-        android:textSize="22dp"
+        android:textSize="24dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.066"
@@ -52,12 +55,13 @@
 
     <TextView
         android:id="@+id/textDescription_pizzaView"
-        android:layout_width="378dp"
+        android:layout_width="match_parent"
         android:layout_height="73dp"
         android:layout_marginStart="21dp"
         android:layout_marginTop="20dp"
-        android:layout_marginEnd="12dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="392dp"
+        android:textSize="15dp"
         android:text="Description about the pizza"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,37 +79,38 @@
         android:layout_marginBottom="298dp"
         android:contentDescription="@string/choose_size"
         android:entries="@array/sizes"
+        android:backgroundTint="@color/black"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.526"
+        app:layout_constraintHorizontal_bias="0.691"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textDescription_pizzaView"
         app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView2"
-        android:layout_width="80dp"
+        android:layout_width="wrap_content"
         android:layout_height="46dp"
         android:layout_marginStart="40dp"
         android:layout_marginEnd="18dp"
-        android:layout_marginBottom="307dp"
-        android:text="Size"
+        android:gravity="center"
+        android:text="Size          :"
         android:textSize="17dp"
         android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/spinner_p_size"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/spinner_p_size"
         app:layout_constraintVertical_bias="0.0" />
 
     <Button
         android:id="@+id/btn_addtoCart"
-        android:layout_width="318dp"
+        android:layout_width="match_parent"
         android:layout_height="41dp"
-        android:layout_marginStart="145dp"
+        android:layout_marginStart="15dp"
         android:layout_marginTop="121dp"
-        android:layout_marginEnd="128dp"
+        android:layout_marginEnd="15dp"
         android:layout_marginBottom="134dp"
         android:text="Add to Cart"
         android:background="@color/colorPrimaryVariant"

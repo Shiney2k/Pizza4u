@@ -18,16 +18,23 @@
             android:orientation="vertical">
 
             <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:textAlignment="center"
+                android:background="#ECEAEA"
+                android:fadingEdgeLength="5dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="10dp"
+                android:fontFamily="sans-serif-condensed-light"
+                android:padding="3dp"
                 android:text="ORDERS"
-                android:layout_marginTop="10dp"/>
+                android:textSize="15dp"
+                android:layout_gravity="center_horizontal"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recycler_orders"
                 android:layout_width="match_parent"
-                android:layout_height="672dp"
-                android:layout_marginTop="30dp">
+                android:layout_height="672dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 
