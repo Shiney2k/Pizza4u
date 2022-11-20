@@ -69,7 +69,7 @@ public class ManagerPizzasFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         recyclerView = view.findViewById(R.id.recycler_pizzas_manager);
-        btnNew=view.findViewById(R.id.btnSave_manager_pizzaAdd);
+        btnNew=view.findViewById(R.id.btn_add_pizza);
 
         btnNew.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -96,18 +96,20 @@ public class ManagerPizzasFragment extends Fragment {
 
                                     PizzaModel pizzaModel = document.toObject(PizzaModel.class);
                                     pizzaModelArrayList.add(pizzaModel);
+                                    pizzasRecycleAdapter=new ManagerPizzasRecycleAdapter(getContext(),pizzaModelArrayList);
                                     pizzasRecycleAdapter.notifyDataSetChanged();
 
+                                }
+                                if(!pizzaModelArrayList.isEmpty()){
+                                    recyclerView.setAdapter(pizzasRecycleAdapter);
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                                }else {
+                                    recyclerView.setVisibility(View.GONE);
                                 }
                             }}
                     }
 
                 });
-
-
-        pizzasRecycleAdapter=new ManagerPizzasRecycleAdapter(this.getContext(),pizzaModelArrayList);
-        recyclerView.setAdapter(pizzasRecycleAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this.getContext()));
 
     }
 }

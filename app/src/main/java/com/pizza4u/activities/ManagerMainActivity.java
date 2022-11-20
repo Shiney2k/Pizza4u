@@ -50,7 +50,7 @@ public class ManagerMainActivity extends AppCompatActivity {
         buttonAddBranch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ManagerMainActivity.this , AddBranchActivity.class);
+                Intent intent = new Intent(ManagerMainActivity.this , BranchListActivity.class);
                 startActivity(intent);
             }
         });
@@ -58,7 +58,15 @@ public class ManagerMainActivity extends AppCompatActivity {
         buttonAddEmployee.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ManagerMainActivity.this , AddEmployeeActivity.class);
+                Intent intent = new Intent(ManagerMainActivity.this , EmployeeListActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        buttonAddMenu.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(ManagerMainActivity.this , ManagerMenuActivity.class);
                 startActivity(intent);
             }
         });

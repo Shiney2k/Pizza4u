@@ -33,12 +33,13 @@
                 android:id="@+id/txt_PType_managerAdd"
                 android:layout_width="252dp"
                 android:layout_height="48dp"
-                android:layout_marginStart="64dp"
                 android:layout_marginTop="8dp"
                 android:fontFamily="@font/belleza"
                 android:hint="Non-Veg"
                 android:textSize="18dp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.532"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/txtPizzaNameManagerAdd" />
 
@@ -52,8 +53,11 @@
                 android:text="Type : "
                 android:textSize="17dp"
                 app:layout_constraintBottom_toTopOf="@+id/txt2"
+                app:layout_constraintEnd_toStartOf="@+id/txt_PType_managerAdd"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/txt3" />
+                app:layout_constraintTop_toBottomOf="@+id/txt3"
+                app:layout_constraintVertical_bias="0.155" />
 
             <TextView
                 android:id="@+id/txt3"
@@ -65,14 +69,14 @@
                 android:text="Name : "
                 android:textSize="17dp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imagePizzaManagerAdd"/>
+                app:layout_constraintTop_toBottomOf="@id/imagePizzaManagerAdd" />
 
             <TextView
                 android:id="@+id/txt2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
                 android:layout_marginStart="4dp"
+                android:layout_marginTop="20dp"
                 android:fontFamily="@font/belleza"
                 android:text="Price : "
                 android:textSize="17dp"
@@ -83,13 +87,16 @@
                 android:id="@+id/txt4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="4dp"
                 android:layout_marginTop="64dp"
                 android:fontFamily="@font/belleza"
                 android:text="Description : "
                 android:textSize="17dp"
+                app:layout_constraintBottom_toTopOf="@+id/txtPizzaDescriptionManagerAdd"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/txt_PType_managerAdd"/>
+                app:layout_constraintTop_toBottomOf="@id/txt_PType_managerAdd"
+                app:layout_constraintVertical_bias="0.0" />
 
             <EditText
                 android:id="@+id/txt_Price_managerAdd"
@@ -99,20 +106,24 @@
                 android:hint="1700"
                 android:textSize="18dp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.091"
+                app:layout_constraintStart_toEndOf="@+id/txt2"
                 app:layout_constraintTop_toBottomOf="@id/txt_PType_managerAdd"
-                tools:layout_editor_absoluteX="64dp"
                 tools:ignore="MissingConstraints" />
 
             <EditText
                 android:id="@+id/txtPizzaNameManagerAdd"
                 android:layout_width="310dp"
                 android:layout_height="48dp"
+                android:layout_marginStart="9dp"
                 android:fontFamily="@font/belleza"
                 android:hint="@string/text_pizza"
                 android:textSize="18dp"
                 android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/txt3"
                 app:layout_constraintTop_toBottomOf="@+id/imagePizzaManagerAdd"
-                tools:layout_editor_absoluteX="64dp"
                 tools:ignore="MissingConstraints" />
 
             <ImageView
@@ -169,8 +180,8 @@
                 android:layout_width="94dp"
                 android:layout_height="51dp"
                 android:layout_marginTop="20dp"
-                android:ems="10"
                 android:backgroundTint="#FA9227"
+                android:ems="10"
                 android:gravity="center"
                 android:text="Save"
                 android:textSize="13dp"

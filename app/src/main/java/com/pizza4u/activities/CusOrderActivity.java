@@ -7,6 +7,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -25,7 +27,7 @@ public class CusOrderActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-    UserModel userModel;
+    String email;
     ArrayList<OrderItemModel> orderItemModelArrayList;
     CusOrderItemsRecycleAdapter orderItemsRecycleAdapter;
     private String orderid,tot;
@@ -42,14 +44,16 @@ public class CusOrderActivity extends AppCompatActivity {
 
         orderid=getIntent().getStringExtra("orderId");
         tot=getIntent().getStringExtra("price");
+        email=getIntent().getStringExtra("email");
+        Log.d("mail",email);
 
         txttot.setText(tot);
         txtOrderid.setText(orderid);
 
         orderItemModelArrayList=new ArrayList<>();
 
-        db.collection("orders")
-                .whereEqualTo("userEmail",userModel.getEmail())
+        db.collection("order-items")
+                .whereEqualTo("userEmail",email)
                 .whereEqualTo("orderID",orderid)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -65,18 +69,23 @@ public class CusOrderActivity extends AppCompatActivity {
 
                                     OrderItemModel orderItemModel = document.toObject(OrderItemModel.class);
                                     orderItemModelArrayList.add(orderItemModel);
+                                    orderItemsRecycleAdapter = new CusOrderItemsRecycleAdapter(CusOrderActivity.this,orderItemModelArrayList);
                                     orderItemsRecycleAdapter.notifyDataSetChanged();
 
                                 }
-                            }}
+                                if(!orderItemModelArrayList.isEmpty()){
+                                    recyclerView.setAdapter(orderItemsRecycleAdapter);
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(CusOrderActivity.this));
+                                }else {
+                                    recyclerView.setVisibility(View.GONE);
+                                }
+                            }else {
+                                Log.d("Items","Empty");
+                            }
+                        }
                     }
 
                 });
-
-
-        orderItemsRecycleAdapter = new CusOrderItemsRecycleAdapter(CusOrderActivity.this,orderItemModelArrayList);
-        recyclerView.setAdapter(orderItemsRecycleAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(CusOrderActivity.this));
 
 
     }

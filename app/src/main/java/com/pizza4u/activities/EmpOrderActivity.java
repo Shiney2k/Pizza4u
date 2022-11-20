@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -28,8 +29,8 @@ public class EmpOrderActivity extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     ArrayList<OrderItemModel> orderItemModelArrayList;
     EmpOrderItemsRecycleAdapter orderItemsRecycleAdapter;
-    private String orderid,tot;
-    private TextView txtOrderid,txttot;
+    private String orderid,tot,mail;
+    private TextView txtOrderid,txttot,txtmail;
 
     @SuppressLint("MissingInflatedId")
     @Override
@@ -40,17 +41,21 @@ public class EmpOrderActivity extends AppCompatActivity {
         txtOrderid = findViewById(R.id.txt_orderId_emp);
         txttot = findViewById(R.id.txt_totalPrice_emp);
         recyclerView = findViewById(R.id.recycler_orderItems_emp);
+        txtmail=findViewById(R.id.txt_orderMail_emp);
 
         orderid=getIntent().getStringExtra("orderId");
         tot=getIntent().getStringExtra("price");
+        mail=getIntent().getStringExtra("mail");
 
+        txtmail.setText(mail);
         txttot.setText(tot);
         txtOrderid.setText(orderid);
 
         orderItemModelArrayList=new ArrayList<>();
 
-        db.collection("orders")
+        db.collection("order-items")
                 .whereEqualTo("orderID",orderid)
+                .whereEqualTo("userEmail",mail)
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @SuppressLint("NotifyDataSetChanged")
@@ -65,18 +70,18 @@ public class EmpOrderActivity extends AppCompatActivity {
 
                                     OrderItemModel orderItemModel = document.toObject(OrderItemModel.class);
                                     orderItemModelArrayList.add(orderItemModel);
+                                    orderItemsRecycleAdapter = new EmpOrderItemsRecycleAdapter(EmpOrderActivity.this,orderItemModelArrayList);
                                     orderItemsRecycleAdapter.notifyDataSetChanged();
-
+                                }
+                                if(!orderItemModelArrayList.isEmpty()){
+                                    recyclerView.setAdapter(orderItemsRecycleAdapter);
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(EmpOrderActivity.this));
+                                }else {
+                                    recyclerView.setVisibility(View.GONE);
                                 }
                             }}
                     }
 
                 });
-
-
-        orderItemsRecycleAdapter = new EmpOrderItemsRecycleAdapter(EmpOrderActivity.this,orderItemModelArrayList);
-        recyclerView.setAdapter(orderItemsRecycleAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(EmpOrderActivity.this));
-
     }
 }

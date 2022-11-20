@@ -5,6 +5,7 @@ import static java.lang.Float.parseFloat;
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,7 +43,7 @@ public class ManagerPizzasRecycleAdapter extends RecyclerView.Adapter<ManagerPiz
     @Override
     public PizzasViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.layout_cus_pizzas,parent,false);
+        View view = inflater.inflate(R.layout.layout_manager_pizzas,parent,false);
         return new ManagerPizzasRecycleAdapter.PizzasViewHolder(view);
     }
 
@@ -56,6 +57,8 @@ public class ManagerPizzasRecycleAdapter extends RecyclerView.Adapter<ManagerPiz
         holder.txtPrice.setText(pizzaModelList.get(position).getPrice().toString());
         Picasso.get().load(pizzaModelList.get(position).getPhoto_url()).into(holder.img);
         holder.img.setOnClickListener(new View.OnClickListener() {
+
+
             @Override
             public void onClick(View view) {
 

@@ -34,10 +34,10 @@
                 android:textSize="18dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.332"
+                app:layout_constraintHorizontal_bias="0.441"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.525" />
+                app:layout_constraintVertical_bias="0.534" />
 
             <TextView
                 android:id="@+id/txtPizzaNameCart"
@@ -102,26 +102,30 @@
 
             <ImageButton
                 android:id="@+id/btnPlus"
-                android:layout_width="21dp"
-                android:layout_height="21dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 android:layout_marginTop="12dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="@+id/txtPizzaPriceCart"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toEndOf="@+id/txtPizzaCount"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.404"
+                app:layout_constraintVertical_bias="0.473"
                 app:srcCompat="@drawable/icon_plus"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="146dp" />
+                tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
             <ImageButton
                 android:id="@+id/btnMinus"
-                android:layout_width="21dp"
-                android:layout_height="21dp"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txtPizzaCount"
+                app:layout_constraintHorizontal_bias="1.0"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.525"
+                app:layout_constraintVertical_bias="0.677"
                 app:srcCompat="@drawable/icon_minus"
-                tools:ignore="MissingConstraints"
-                tools:layout_editor_absoluteX="104dp" />
+                tools:ignore="MissingConstraints,SpeakableTextPresentCheck" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 

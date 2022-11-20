@@ -35,107 +35,22 @@ import java.util.ArrayList;
 public class CustomerMainActivity extends AppCompatActivity {
 
     BottomNavigationView nav;
-    FirebaseFirestore db = FirebaseFirestore.getInstance();
-    PizzaTypeModel pizzaTypeModel;
-    PizzaModel pizzaModel;
-    OrderModel orderModel;
-    OrderItemModel orderItemModel;
-    ArrayList<CartItemModel> cartItemModelArrayList;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_customer_main);
-        replaceFragment(new CusProfileFragment());
-
-        cartItemModelArrayList = new ArrayList<>();
-
-
-        db.collection("pizza-types")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            if(!task.getResult().isEmpty()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    // Log.d(TAG, document.getId() + " => " + document.getData());
-                                    // String email = document.get("email").toString();
-                                    // Log.d("Email", email);
-
-                                    pizzaTypeModel=document.toObject(PizzaTypeModel.class);
-
-                                    }
-                                }}
-                        }
-
-                });
-
-        db.collection("pizzas")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            if(!task.getResult().isEmpty()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    // Log.d(TAG, document.getId() + " => " + document.getData());
-                                    // String email = document.get("email").toString();
-                                    // Log.d("Email", email);
-
-                                   pizzaModel=document.toObject(PizzaModel.class);
-
-                                }
-                            }}
-                    }
-
-                });
-
-
-
-
-        db.collection("orders")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            if(!task.getResult().isEmpty()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    // Log.d(TAG, document.getId() + " => " + document.getData());
-                                    // String email = document.get("email").toString();
-                                    // Log.d("Email", email);
-
-                                    orderModel=document.toObject(OrderModel.class);
-
-                                }
-                            }}
-                    }
-
-                });
-
-        db.collection("order-items")
-                .get()
-                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                    @Override
-                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                        if (task.isSuccessful()) {
-                            if(!task.getResult().isEmpty()) {
-                                for (QueryDocumentSnapshot document : task.getResult()) {
-                                    // Log.d(TAG, document.getId() + " => " + document.getData());
-                                    // String email = document.get("email").toString();
-                                    // Log.d("Email", email);
-
-                                    orderItemModel=document.toObject(OrderItemModel.class);
-
-                                }
-                            }}
-                    }
-
-                });
 
         UserModel userModel = (UserModel) getIntent().getSerializableExtra("userData");
         Log.d("UserData from Customer Home", userModel.getEmail() + " " + userModel.getFname());
+
+        Bundle bundleh = new Bundle();
+        bundleh.putSerializable("userModel", userModel);
+
+        getSupportFragmentManager().beginTransaction()
+                .setReorderingAllowed(true)
+                .replace(R.id.nav_frame_container, CusHomeFragment.class, bundleh)
+                .commit();
 
         nav = findViewById(R.id.nav_bar);
         nav.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
@@ -143,16 +58,40 @@ public class CustomerMainActivity extends AppCompatActivity {
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
                 switch (item.getItemId()){
                     case R.id.home:
-                        replaceFragment(new CusHomeFragment());
+                        Bundle bundleh = new Bundle();
+                        bundleh.putSerializable("userModel", userModel);
+
+                        getSupportFragmentManager().beginTransaction()
+                                .setReorderingAllowed(true)
+                                .replace(R.id.nav_frame_container, CusHomeFragment.class, bundleh)
+                                .commit();
                         break;
                     case R.id.cart:
-                        replaceFragment(new CusCartFragment());
+                        Bundle bundlec = new Bundle();
+                        bundlec.putSerializable("userModel", userModel);
+
+                        getSupportFragmentManager().beginTransaction()
+                                .setReorderingAllowed(true)
+                                .replace(R.id.nav_frame_container, CusCartFragment.class, bundlec)
+                                .commit();
                         break;
                     case R.id.orders:
-                        replaceFragment(new CusOrdersFragment());
+                        Bundle bundleo = new Bundle();
+                        bundleo.putSerializable("userModel", userModel);
+
+                        getSupportFragmentManager().beginTransaction()
+                                .setReorderingAllowed(true)
+                                .replace(R.id.nav_frame_container, CusOrdersFragment.class, bundleo)
+                                .commit();
                         break;
                     case R.id.profile:
-                        replaceFragment(new CusProfileFragment(userModel));
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("userModel", userModel);
+
+                        getSupportFragmentManager().beginTransaction()
+                                .setReorderingAllowed(true)
+                                .replace(R.id.nav_frame_container, CusProfileFragment.class, bundle)
+                                .commit();
                         break;
 
                 }

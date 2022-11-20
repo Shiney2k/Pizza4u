@@ -38,21 +38,27 @@
                 android:fontFamily="@font/belleza"
                 android:text="Name : "
                 android:textSize="17dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/txtPizzaTypeNameManagerAdd"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imagePizzaTypeManagerAdd" />
-
+                app:layout_constraintTop_toBottomOf="@id/imagePizzaTypeManagerAdd"
+                app:layout_constraintVertical_bias="0.065" />
 
             <EditText
                 android:id="@+id/txtPizzaTypeNameManagerAdd"
                 android:layout_width="310dp"
                 android:layout_height="48dp"
                 android:layout_marginTop="8dp"
+                android:layout_marginEnd="4dp"
                 android:fontFamily="@font/belleza"
                 android:hint="@string/text_pizza_type"
                 android:textSize="18dp"
                 android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/imagePizzaTypeManagerAdd"
-                tools:layout_editor_absoluteX="64dp"
+                app:layout_constraintVertical_bias="0.013"
                 tools:ignore="MissingConstraints" />
 
             <ImageView

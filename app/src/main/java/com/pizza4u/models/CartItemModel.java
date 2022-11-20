@@ -8,11 +8,12 @@ public class CartItemModel {
     Float unitPrice;
     int count;
     String docId;
+    String photo_url;
 
     public CartItemModel() {
     }
 
-    public CartItemModel(String userID, String pizzaName,String size, Float price,Float unitPrice, int count,String docId) {
+    public CartItemModel(String userID, String pizzaName,String size, Float price,Float unitPrice, int count,String docId,String photo_url) {
         this.userEmail =userID;
         this.size=size;
         this.pizzaName = pizzaName;
@@ -20,6 +21,15 @@ public class CartItemModel {
         this.unitPrice=unitPrice;
         this.count = count;
         this.docId=docId;
+        this.photo_url=photo_url;
+    }
+
+    public String getPhoto_url() {
+        return photo_url;
+    }
+
+    public void setPhoto_url(String photo_url) {
+        this.photo_url = photo_url;
     }
 
     public String getUserEmail() {

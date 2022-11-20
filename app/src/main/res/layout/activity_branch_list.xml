@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.ManagerPizzasFragment">
+    tools:context=".activities.BranchListActivity">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_headerbar" />
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -12,7 +21,9 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="635dp">
+        android:layout_height="690dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -29,27 +40,28 @@
                 android:layout_marginBottom="10dp"
                 android:fontFamily="sans-serif-condensed-light"
                 android:padding="3dp"
-                android:text="PIZZAS"
+                android:text="BRANCHES"
                 android:textSize="15dp"
                 android:layout_gravity="center_horizontal"/>
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/recycler_pizzas_manager"
+                android:id="@+id/recycler_branches"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp">
 
             </androidx.recyclerview.widget.RecyclerView>
 
         </LinearLayout>
     </ScrollView>
-        <Button
-            android:id="@+id/btn_add_pizza"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/colorPrimaryVariant"
-            android:layout_marginStart="5dp"
-            android:layout_marginEnd="5dp"
-            android:text="Add New Pizza" />
+    <Button
+        android:id="@+id/btn_add_branch"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginEnd="5dp"
+        android:background="@color/colorPrimaryVariant"
+        android:text="Add New Pizza Type" />
     </LinearLayout>
-
-</FrameLayout>
+    </LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

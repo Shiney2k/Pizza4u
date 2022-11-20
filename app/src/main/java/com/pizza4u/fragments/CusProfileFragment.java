@@ -23,6 +23,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 
 import com.google.android.gms.tasks.Continuation;
@@ -50,19 +51,15 @@ public class CusProfileFragment extends Fragment {
 
     private View view;
     private EditText edt_fname,edt_lname,edt_phone,edt_email,edt_password;
-    private Button btnSave,btn_changePP;
+    private Button btnSave;
+    private ImageButton btn_changePP;
     private ImageView imgPP;
     Bitmap image;
     Uri selectedImage;
     String profilepicUri;
-    UserModel userModel;
 
     public CusProfileFragment() {
         // Required empty public constructor
-    }
-
-    public  CusProfileFragment(UserModel userModel){
-        this.userModel=userModel;
     }
 
     public static CusProfileFragment newInstance(String param1, String param2) {
@@ -101,10 +98,13 @@ public class CusProfileFragment extends Fragment {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseStorage storage = FirebaseStorage.getInstance();
 
+        UserModel userModel = (UserModel) requireArguments().getSerializable("userModel");
+
         edt_fname.setText(userModel.getFname());
         edt_lname.setText(userModel.getLname());
         edt_email.setText(userModel.getEmail());
-        edt_phone.setText(userModel.getPhone());
+        edt_phone.setText(String.valueOf(userModel.getPhone()));
+        edt_password.setText(userModel.getPassword());
 
         Picasso.get().load(userModel.getProfilepic()).into(imgPP);
 
@@ -183,7 +183,7 @@ public class CusProfileFragment extends Fragment {
                                     Uri downloadUri = task.getResult();
                                     Log.d("Profile picture download uri: ", downloadUri.toString());
 
-                                    updateCustomer(db,view,downloadUri.toString());
+                                    updateCustomer(db,view,downloadUri.toString(),userModel);
 
                                 } else {
                                     Log.d(TAG, "Failed to get image download URL");
@@ -218,7 +218,7 @@ public class CusProfileFragment extends Fragment {
                                     Uri downloadUri = task.getResult();
                                     Log.d("Profile picture download uri: ", downloadUri.toString());
 
-                                    updateCustomer(db,view,downloadUri.toString());
+                                    updateCustomer(db,view,downloadUri.toString(),userModel);
 
                                 } else {
                                     Log.d(TAG, "Failed to get image download URL");
@@ -229,7 +229,7 @@ public class CusProfileFragment extends Fragment {
                 }
                 //If image is not changed
                 else {
-                    updateCustomer(db,view,userModel.getProfilepic());
+                    updateCustomer(db,view,userModel.getProfilepic(),userModel);
                 }
 
 
@@ -313,18 +313,18 @@ public class CusProfileFragment extends Fragment {
      }
 
 
-    public void updateCustomer(FirebaseFirestore db,View view,String downloadUri){
+    public void updateCustomer(FirebaseFirestore db,View view,String downloadUri, UserModel userModelNew){
         CollectionReference dbUsers = db.collection("users");
-        DocumentReference documentReference = dbUsers.document(userModel.getDocID());
+        DocumentReference documentReference = dbUsers.document(userModelNew.getDocID());
 
-        userModel.setEmail(edt_email.getText().toString().trim());
-        userModel.setFname(edt_fname.getText().toString().trim());
-        userModel.setLname(edt_lname.getText().toString().trim());
-        userModel.setPhone(parseInt(edt_phone.getText().toString()));
-        userModel.setPassword(edt_password.getText().toString().trim());
-        userModel.setProfilepic(downloadUri);
+        userModelNew.setEmail(edt_email.getText().toString().trim());
+        userModelNew.setFname(edt_fname.getText().toString().trim());
+        userModelNew.setLname(edt_lname.getText().toString().trim());
+        userModelNew.setPhone(parseInt(edt_phone.getText().toString()));
+        userModelNew.setPassword(edt_password.getText().toString().trim());
+        userModelNew.setProfilepic(downloadUri);
 
-        documentReference.set(userModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+        documentReference.set(userModelNew).addOnSuccessListener(new OnSuccessListener<Void>() {
             @Override
             public void onSuccess(Void unused) {
                 DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
@@ -333,8 +333,6 @@ public class CusProfileFragment extends Fragment {
                         switch (which){
                             case DialogInterface.BUTTON_POSITIVE:
                                 //Yes button clicked
-                                Intent intent = new Intent(getContext(),MainActivity.class);
-                                startActivity(intent);
                                 break;
                         }
                     }

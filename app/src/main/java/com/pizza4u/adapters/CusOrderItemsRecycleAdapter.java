@@ -21,7 +21,6 @@ public class CusOrderItemsRecycleAdapter extends RecyclerView.Adapter<CusOrderIt
 
     Context mContext;
     private List<OrderItemModel> orderItemModelList;
-    private int position;
 
     public CusOrderItemsRecycleAdapter(CusOrderActivity mContext, List<OrderItemModel> orderItemModelArrayList) {
         this.mContext=mContext;
@@ -38,7 +37,6 @@ public class CusOrderItemsRecycleAdapter extends RecyclerView.Adapter<CusOrderIt
 
     @Override
     public void onBindViewHolder(@NonNull OrderItemsViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        this.position=position;
 
         holder.txtName.setText(String.valueOf(orderItemModelList.get(position).getPizzaName()));
         holder.txtPrice.setText(String.valueOf(orderItemModelList.get(position).getSubTotal()));
@@ -63,7 +61,7 @@ public class CusOrderItemsRecycleAdapter extends RecyclerView.Adapter<CusOrderIt
             txtName=itemView.findViewById(R.id.txtName);
             txtPrice=itemView.findViewById(R.id.txtPrice);
             txtCount=itemView.findViewById(R.id.txtCount);
-            txtSize=itemView.findViewById(R.id.txtPizzaSize);
+            txtSize=itemView.findViewById(R.id.txtSize);
 
         }
     }

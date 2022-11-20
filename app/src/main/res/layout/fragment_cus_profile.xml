@@ -145,7 +145,7 @@
                         android:id="@+id/txtCusPhone"
                         android:layout_width="344dp"
                         android:layout_height="60dp"
-                        android:hint="@string/phone_hint"
+                        android:hint="@string/phone_number"
                         android:inputType="phone"
                         android:textSize="15dp" />
 

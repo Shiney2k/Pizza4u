@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.graphics.Bitmap;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -32,15 +33,16 @@ import com.pizza4u.activities.CusPizzaListActivity;
 import com.pizza4u.models.PizzaTypeModel;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ManagerPTypesRecycleAdapter extends RecyclerView.Adapter<ManagerPTypesRecycleAdapter.PTypesViewHolder>{
 
     private Context mContext;
-    public List<PizzaTypeModel> pizzaTypeModelList;
-    private int position;
+    public ArrayList<PizzaTypeModel> pizzaTypeModelList;
 
-    public ManagerPTypesRecycleAdapter(Context mContext, List<PizzaTypeModel> pizzaTypeModelList) {
+
+    public ManagerPTypesRecycleAdapter(Context mContext, ArrayList<PizzaTypeModel> pizzaTypeModelList) {
         this.mContext = mContext;
         this.pizzaTypeModelList = pizzaTypeModelList;
     }
@@ -49,15 +51,15 @@ public class ManagerPTypesRecycleAdapter extends RecyclerView.Adapter<ManagerPTy
     @Override
     public PTypesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
-        View view = inflater.inflate(R.layout.layout_cus_pizza_types,parent,false);
+        View view = inflater.inflate(R.layout.layout_manager_ptypes,parent,false);
         return new ManagerPTypesRecycleAdapter.PTypesViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PTypesViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        this.position = position;
 
-        holder.txtPtype.setText(pizzaTypeModelList.get(position).getTypeName());
+        String name =pizzaTypeModelList.get(position).getTypeName();
+        holder.txtPtype.setText(name);
         Picasso.get().load(pizzaTypeModelList.get(position).getPhoto_url()).into(holder.img);
 
 
@@ -109,9 +111,6 @@ public class ManagerPTypesRecycleAdapter extends RecyclerView.Adapter<ManagerPTy
                         }
                     });
 
-
-
-
             }
         });
 
@@ -131,9 +130,9 @@ public class ManagerPTypesRecycleAdapter extends RecyclerView.Adapter<ManagerPTy
         public PTypesViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            txtPtype = itemView.findViewById(R.id.txtPTname);
-            img = itemView.findViewById(R.id.imagePType);
-            btnSave = itemView.findViewById(R.id.btnSavePtypeM);
+            this.txtPtype = itemView.findViewById(R.id.txtPTname);
+            this.img = itemView.findViewById(R.id.imagePType);
+            this.btnSave = itemView.findViewById(R.id.btnSavePtypeM);
 
         }
 

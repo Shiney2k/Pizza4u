@@ -55,18 +55,20 @@ public class CheckOrdersActivity extends AppCompatActivity {
 
                                     OrderModel orderModel = document.toObject(OrderModel.class);
                                     orderModelArrayList.add(orderModel);
+                                    ordersRecycleAdapter = new EmpOrderRecycleAdapter(CheckOrdersActivity.this, orderModelArrayList);
                                     ordersRecycleAdapter.notifyDataSetChanged();
 
+                                }
+                                if(!orderModelArrayList.isEmpty()){
+                                    recyclerView.setAdapter(ordersRecycleAdapter);
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(CheckOrdersActivity.this));
+                                }else {
+                                    recyclerView.setVisibility(View.GONE);
                                 }
                             }}
                     }
 
                 });
-
-        ordersRecycleAdapter = new EmpOrderRecycleAdapter(this, orderModelArrayList);
-        recyclerView.setAdapter(ordersRecycleAdapter);
-        recyclerView.setLayoutManager(new LinearLayoutManager(this));
-
 
     }
 }

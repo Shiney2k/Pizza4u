@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     package="com.pizza4u">
 
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.CAMERA" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
 
     <application
         android:allowBackup="true"
@@ -14,6 +17,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Pizza4u">
         <activity
+            android:name=".activities.EmployeeListActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
+            android:name=".activities.BranchListActivity"
+            android:exported="false">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
+        <activity
             android:name=".activities.AddPizzaTypeActivity"
             android:exported="false">
             <meta-data
@@ -22,7 +39,6 @@
         </activity>
         <activity
             android:name=".activities.EmpOrderActivity"
-
             android:exported="false">
             <meta-data
                 android:name="android.app.lib_name"
@@ -42,7 +58,6 @@
                 android:name="android.app.lib_name"
                 android:value="" />
         </activity>
-
         <activity
             android:name=".activities.CheckOrdersActivity"
             android:exported="false">

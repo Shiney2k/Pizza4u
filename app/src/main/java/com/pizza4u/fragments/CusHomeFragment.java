@@ -64,7 +64,7 @@ public class CusHomeFragment extends Fragment {
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        view = inflater.inflate(R.layout.fragment_cus_cart, container, false);
+        view = inflater.inflate(R.layout.fragment_cus_home, container, false);
         return view;
     }
 
@@ -72,11 +72,13 @@ public class CusHomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        UserModel userModel = (UserModel) requireArguments().getSerializable("userModel");
+
         recyclerView = view.findViewById(R.id.recyclerPTypes);
 
         pizzaTypeModelArrayList=new ArrayList<>();
 
-        db.collection("pizza-types")
+        db.collection("pizza-type")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @SuppressLint("NotifyDataSetChanged")
@@ -91,21 +93,21 @@ public class CusHomeFragment extends Fragment {
 
                                     PizzaTypeModel pizzaTypeModel = document.toObject(PizzaTypeModel.class);
                                     pizzaTypeModelArrayList.add(pizzaTypeModel);
+                                    pizzaTypeRecycleAdapter=new PizzaTypeRecycleAdapter(getContext(),pizzaTypeModelArrayList,userModel);
                                     pizzaTypeRecycleAdapter.notifyDataSetChanged();
+                                }
+                                if(!pizzaTypeModelArrayList.isEmpty()) {
+                                    recyclerView.setAdapter(pizzaTypeRecycleAdapter);
 
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+                                } else{
+                                    recyclerView.setVisibility(View.GONE);
                                 }
                             }}
                     }
 
                 });
 
-
-        pizzaTypeRecycleAdapter=new PizzaTypeRecycleAdapter(this.getContext(),pizzaTypeModelArrayList);
-        if(!pizzaTypeModelArrayList.isEmpty()) {
-            recyclerView.setAdapter(pizzaTypeRecycleAdapter);
-
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        }
     }
 
 }

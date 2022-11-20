@@ -6,8 +6,10 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -16,42 +18,33 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.pizza4u.R;
+import com.pizza4u.adapters.BranchRecyclerAdapter;
 import com.pizza4u.adapters.PizzasRecycleAdapter;
+import com.pizza4u.models.BranchModel;
 import com.pizza4u.models.PizzaModel;
-import com.pizza4u.models.PizzaTypeModel;
 
 import java.util.ArrayList;
 
-public class CusPizzaListActivity extends AppCompatActivity {
+public class BranchListActivity extends AppCompatActivity {
 
     private RecyclerView recyclerView;
-    ArrayList<PizzaModel> pizzaModelArrayList;
-    PizzasRecycleAdapter pizzasRecycleAdapter;
+    ArrayList<BranchModel> branchModelArrayList;
+    BranchRecyclerAdapter branchRecycleAdapter;
     FirebaseFirestore db =FirebaseFirestore.getInstance();
-    private TextView txtpType;
-    private String pType;
-    private String userEmail;
+    Button btnAddBranch;
 
-    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_cus_pizza_list);
+        setContentView(R.layout.activity_branch_list);
 
-        txtpType = findViewById(R.id.textPListType);
-        recyclerView = findViewById(R.id.recyclerPList);
+        recyclerView = findViewById(R.id.recycler_branches);
+        btnAddBranch = findViewById(R.id.btn_add_branch);
 
-        // getting data from intent
-        pType = getIntent().getStringExtra("ptypeName");
-        userEmail=getIntent().getStringExtra("userEmail");
 
-        // setting intent data
-        txtpType.setText(pType);
+        branchModelArrayList=new ArrayList<>();
 
-        pizzaModelArrayList=new ArrayList<>();
-
-        db.collection("pizza")
-                .whereEqualTo("pizza_type",pType)
+        db.collection("branch")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                     @SuppressLint("NotifyDataSetChanged")
@@ -64,14 +57,14 @@ public class CusPizzaListActivity extends AppCompatActivity {
                                     String documentid = document.getId();
                                     // Log.d("Email", email);
 
-                                    PizzaModel pizzaModel = document.toObject(PizzaModel.class);
-                                    pizzaModelArrayList.add(pizzaModel);
-                                    pizzasRecycleAdapter=new PizzasRecycleAdapter(CusPizzaListActivity.this,pizzaModelArrayList,userEmail);
-                                    pizzasRecycleAdapter.notifyDataSetChanged();
+                                    BranchModel branchModel = document.toObject(BranchModel.class);
+                                    branchModelArrayList.add(branchModel);
+                                    branchRecycleAdapter=new BranchRecyclerAdapter(BranchListActivity.this,branchModelArrayList);
+                                    branchRecycleAdapter.notifyDataSetChanged();
                                 }
-                                if(!pizzaModelArrayList.isEmpty()){
-                                    recyclerView.setAdapter(pizzasRecycleAdapter);
-                                    recyclerView.setLayoutManager(new LinearLayoutManager(CusPizzaListActivity.this));
+                                if(!branchModelArrayList.isEmpty()){
+                                    recyclerView.setAdapter(branchRecycleAdapter);
+                                    recyclerView.setLayoutManager(new LinearLayoutManager(BranchListActivity.this));
                                 }else {
                                     recyclerView.setVisibility(View.GONE);
                                 }
@@ -79,7 +72,14 @@ public class CusPizzaListActivity extends AppCompatActivity {
                     }
 
                 });
+
+        btnAddBranch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(BranchListActivity.this , AddBranchActivity.class);
+                startActivity(intent);
+            }
+        });
+
     }
-
-
-};
+}

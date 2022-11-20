@@ -20,13 +20,14 @@ import java.util.List;
 
 public class CusOrdersRecycleAdapter extends RecyclerView.Adapter<CusOrdersRecycleAdapter.OrdersViewHolder>{
     Context mContext;
-    private int position;
     List<OrderModel> orderModelList;
+    String email;
 
 
-    public CusOrdersRecycleAdapter(Context context, List<OrderModel> orderModelArrayList) {
+    public CusOrdersRecycleAdapter(Context context, List<OrderModel> orderModelArrayList,String email) {
         this.mContext=context;
         this.orderModelList=orderModelArrayList;
+        this.email=email;
     }
 
     @NonNull
@@ -41,7 +42,6 @@ public class CusOrdersRecycleAdapter extends RecyclerView.Adapter<CusOrdersRecyc
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull OrdersViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        this.position=position;
 
         holder.txtOrderid.setText("Order "+orderModelList.get(position).getOrderId());
         holder.txtPrice.setText(orderModelList.get(position).getTotal().toString());
@@ -54,7 +54,7 @@ public class CusOrdersRecycleAdapter extends RecyclerView.Adapter<CusOrdersRecyc
                 Intent intent=new Intent(mContext, CusOrderActivity.class);
                 intent.putExtra("orderId",String.valueOf(orderModelList.get(position).getOrderId()));
                 intent.putExtra("price",String.valueOf(orderModelList.get(position).getTotal()));
-                //intent.putExtra("date",String.valueOf(date.get(position)));
+                intent.putExtra("email",email);
                 //intent.putExtra("status",String.valueOf(status.get(position)));
 
                 mContext.startActivity(intent);
@@ -77,9 +77,10 @@ public class CusOrdersRecycleAdapter extends RecyclerView.Adapter<CusOrdersRecyc
             super(itemView);
 
             txtOrderid=itemView.findViewById(R.id.txtOrderNum);
-            txtPrice=itemView.findViewById(R.id.txtPrice);
+            txtPrice=itemView.findViewById(R.id.txtOrderPrice);
             txtDate=itemView.findViewById(R.id.txtDate);
             txtStatus=itemView.findViewById(R.id.txtStatus);
+            oLayout=itemView.findViewById(R.id.layout_orderContainer);
         }
     }
 }

@@ -6,37 +6,120 @@
     android:layout_height="match_parent"
     tools:context=".activities.EmpOrderActivity">
 
+    <TextView
+        android:id="@+id/txtLbl5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="______________________"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toTopOf="@+id/txt_totalPrice_emp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/recycler_orderItems_emp" />
+
+    <TextView
+        android:id="@+id/txtLbl6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="______________________"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLbl5"
+        app:layout_constraintVertical_bias="0.038" />
+
+    <TextView
+        android:id="@+id/txtLbl7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="______________________"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txtLbl5"
+        app:layout_constraintVertical_bias="0.065" />
+
+    <include
+        android:id="@+id/include"
+        layout="@layout/layout_headerbar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_orderItems_emp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        tools:ignore="MissingConstraints"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="56dp">
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txt_orderId_emp"
+        app:layout_constraintVertical_bias="0.0">
 
     </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
         android:id="@+id/txt_orderId_emp"
-        android:layout_width="206dp"
-        android:textStyle="bold"
-        android:textSize="22dp"
+        android:layout_width="wrap_content"
         android:layout_height="31dp"
-        android:text="@string/orderID"
+        android:layout_marginTop="18dp"
         android:gravity="center"
+        android:text="1000"
+        android:textAlignment="center"
+        android:textSize="18dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.009" />
+
+    <TextView
+        android:id="@+id/txt_"
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:gravity="center"
+        android:text="Order :"
+        android:textSize="18dp"
         app:layout_constraintBottom_toTopOf="@id/recycler_orderItems_emp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.819"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.89" />
+
+    <TextView
+        android:id="@+id/txt_orderMail_emp"
+        android:layout_width="wrap_content"
+        android:layout_height="31dp"
+        android:gravity="center"
+        android:text="customer@gmail.com"
+        android:textSize="18dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@id/recycler_orderItems_emp"
+        app:layout_constraintEnd_toStartOf="@+id/txt_"
+        app:layout_constraintHorizontal_bias="0.009"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/include"
+        app:layout_constraintVertical_bias="0.89" />
 
     <TextView
         android:id="@+id/txtLbl"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="148dp"
         android:layout_marginTop="32dp"
+        android:text="Total    :"
         android:textSize="18dp"
-        android:text="@string/totallbl"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.389"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/recycler_orderItems_emp" />
 
@@ -45,11 +128,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:textSize="19dp"
         android:text="@string/totPrice"
+        android:textSize="19dp"
+        app:layout_constraintBottom_toBottomOf="@+id/txtLbl"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.061"
+        app:layout_constraintHorizontal_bias="0.07"
         app:layout_constraintStart_toEndOf="@+id/txtLbl"
-        app:layout_constraintTop_toBottomOf="@+id/recycler_orderItems_emp" />
+        app:layout_constraintTop_toBottomOf="@+id/recycler_orderItems_emp"
+        app:layout_constraintVertical_bias="0.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

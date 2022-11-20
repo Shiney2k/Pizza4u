@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.pizza4u.activities.CusPizzaListActivity;
 import com.pizza4u.R;
 import com.pizza4u.models.PizzaTypeModel;
+import com.pizza4u.models.UserModel;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -25,16 +26,17 @@ public class PizzaTypeRecycleAdapter extends RecyclerView.Adapter<PizzaTypeRecyc
 
     private Context mContext;
     public List<PizzaTypeModel> pizzaTypeModelList;
-    private int position;
+    UserModel userModel;
 
-    public PizzaTypeRecycleAdapter(Context mContext,List<PizzaTypeModel> pizzaTypeModels) {
+    public PizzaTypeRecycleAdapter(Context mContext, List<PizzaTypeModel> pizzaTypeModels, UserModel userModel) {
         this.mContext = mContext;
         this.pizzaTypeModelList=pizzaTypeModels;
+        this.userModel=userModel;
     }
 
+    @Override
 
     @NonNull
-    @Override
     public PTypesViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.layout_cus_pizza_types,viewGroup,false);
@@ -43,7 +45,6 @@ public class PizzaTypeRecycleAdapter extends RecyclerView.Adapter<PizzaTypeRecyc
 
     @Override
     public void onBindViewHolder(@NonNull PizzaTypeRecycleAdapter.PTypesViewHolder holder, @SuppressLint("RecyclerView") int position) {
-        this.position = position;
 
         holder.txtPtype.setText(pizzaTypeModelList.get(position).getTypeName());
         Picasso.get().load(pizzaTypeModelList.get(position).getPhoto_url()).into(holder.image);
@@ -51,6 +52,7 @@ public class PizzaTypeRecycleAdapter extends RecyclerView.Adapter<PizzaTypeRecyc
         holder.ptypesLayout.setOnClickListener(view -> {
             Intent intent = new Intent(mContext, CusPizzaListActivity.class);
             intent.putExtra("ptypeName",pizzaTypeModelList.get(position).getTypeName());
+            intent.putExtra("userEmail",userModel.getEmail());
             mContext.startActivity(intent);
         });
     }
@@ -71,6 +73,7 @@ public class PizzaTypeRecycleAdapter extends RecyclerView.Adapter<PizzaTypeRecyc
 
             txtPtype = itemView.findViewById(R.id.txtPizzaType);
             image = itemView.findViewById(R.id.imagePizzaType);
+            ptypesLayout=itemView.findViewById(R.id.pTypesLayout);
         }
 
     }

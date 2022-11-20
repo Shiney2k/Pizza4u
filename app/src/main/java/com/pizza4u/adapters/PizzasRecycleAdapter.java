@@ -23,11 +23,13 @@ import java.util.List;
 public class PizzasRecycleAdapter extends RecyclerView.Adapter<PizzasRecycleAdapter.PizzasViewHolder>{
 
     Context mContext;
-    private List<PizzaModel> pizzaModelList;
+    private final List<PizzaModel> pizzaModelList;
+    String userEmail;
 
-    public PizzasRecycleAdapter(CusPizzaListActivity mContext, List<PizzaModel> pizzaModelList) {
+    public PizzasRecycleAdapter(CusPizzaListActivity mContext, List<PizzaModel> pizzaModelList,String userEmail) {
         this.mContext=mContext;
         this.pizzaModelList=pizzaModelList;
+        this.userEmail=userEmail;
     }
 
 
@@ -40,7 +42,7 @@ public class PizzasRecycleAdapter extends RecyclerView.Adapter<PizzasRecycleAdap
     }
 
     @Override
-    public void onBindViewHolder(@NonNull PizzasViewHolder pholder, @SuppressLint("RecyclerView") int position) {
+    public void onBindViewHolder(@NonNull PizzasRecycleAdapter.PizzasViewHolder pholder, @SuppressLint("RecyclerView") int position) {
 
         pholder.txtName.setText(pizzaModelList.get(position).getName());
         pholder.txtDescription.setText(pizzaModelList.get(position).getDescription());
@@ -50,8 +52,9 @@ public class PizzasRecycleAdapter extends RecyclerView.Adapter<PizzasRecycleAdap
             Intent intent = new Intent(mContext, CusPizzaViewActivity.class);
             intent.putExtra("name",pizzaModelList.get(position).getName());
             intent.putExtra("description",pizzaModelList.get(position).getDescription());
-            intent.putExtra("price",pizzaModelList.get(position).getPrice());
+            intent.putExtra("price",pizzaModelList.get(position).getPrice().toString());
             intent.putExtra("photo",pizzaModelList.get(position).getPhoto_url());
+            intent.putExtra("userEmail",userEmail);
 
             mContext.startActivity(intent);
         });
@@ -73,9 +76,10 @@ public class PizzasRecycleAdapter extends RecyclerView.Adapter<PizzasRecycleAdap
         public PizzasViewHolder(@NonNull View itemView) {
             super(itemView);
 
-            txtName = itemView.findViewById(R.id.txtPizzaName);
+            txtName = itemView.findViewById(R.id.txtPizza);
             img = itemView.findViewById(R.id.imagePizza);
             txtDescription = itemView.findViewById(R.id.txtPizzaDescription);
+            pLayout = itemView.findViewById(R.id.pizzaLayout);
         }
     }
 }

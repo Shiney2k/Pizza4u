@@ -17,10 +17,12 @@ import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 import com.pizza4u.R;
+import com.pizza4u.models.BranchModel;
 
 import java.util.HashMap;
 import java.util.Locale;
@@ -34,7 +36,6 @@ public class AddBranchActivity extends AppCompatActivity {
     EditText editTextBranchId;
     Button buttonOpenMap;
     Button buttonOk;
-    Button buttonExit;
     Button buttonInstructions;
     String longitude;
     String latitude;
@@ -51,7 +52,6 @@ public class AddBranchActivity extends AppCompatActivity {
         editTextBranchId = findViewById(R.id.editTextBranchId);
         buttonOpenMap = findViewById(R.id.buttonOpenMap);
         buttonOk = findViewById(R.id.buttonOk);
-        buttonExit = findViewById(R.id.buttonExit);
         buttonInstructions = findViewById(R.id.buttonInstructions);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
@@ -74,12 +74,6 @@ public class AddBranchActivity extends AppCompatActivity {
             }
         });
 
-        buttonExit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
 
         buttonOk.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -93,16 +87,24 @@ public class AddBranchActivity extends AppCompatActivity {
                     latitude = res[1].trim();
                 }
 
-                Map<String, Object> data = new HashMap<>();
-                data.put("branchname", editTextBranchName.getText().toString().trim());
-                data.put("branchid", editTextBranchId.getText().toString().trim());
-                data.put("locationname", editTextLocationName.getText().toString().trim());
-                data.put("longitude", longitude);
-                data.put("latitude", latitude);
 
-                db.collection("branches").add(data).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
-                    @Override
-                    public void onSuccess(DocumentReference documentReference) {
+                CollectionReference dbBranch= db.collection("branch");
+                DocumentReference documentReference = dbBranch.document();
+
+                BranchModel branchModel = new BranchModel(
+                        editTextBranchName.getText().toString().trim(),
+                        editTextBranchId.getText().toString().trim(),
+                        editTextLocationName.getText().toString().trim(),
+                        longitude,
+                        latitude,
+                        documentReference.getId()
+                );
+
+
+
+                documentReference.set(branchModel).addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                    public void onSuccess(Void unused) {
                         Log.d(TAG, "DocumentSnapshot written with ID: " + documentReference.getId());
                         DialogInterface.OnClickListener dialogClickListener = new DialogInterface.OnClickListener() {
                             @Override

@@ -57,7 +57,10 @@ public class AddPizzaActivity extends AppCompatActivity {
         txtPname=findViewById(R.id.txtPizzaNameManagerAdd);
         txtPTname=findViewById(R.id.txt_PType_managerAdd);
         txtPrice=findViewById(R.id.txt_Price_managerAdd);
+        imgPizza=findViewById(R.id.imagePizzaManagerAdd);
         txtDescriprion=findViewById(R.id.txtPizzaDescriptionManagerAdd);
+        btnAddPic=findViewById(R.id.btnAddPic_manager_pizzaAdd);
+        btnSave=findViewById(R.id.btnSave_manager_pizzaAdd);
 
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         FirebaseStorage storage = FirebaseStorage.getInstance();
@@ -101,7 +104,7 @@ public class AddPizzaActivity extends AppCompatActivity {
             public void onClick(View view) {
                 if(image != null || selectedImage != null) {
                     StorageReference storageRef = storage.getReference();
-                    StorageReference profilepicRef = storageRef.child(txtPTname.getText().toString().trim() + "/profilepic.jpg");
+                    StorageReference profilepicRef = storageRef.child(txtPTname.getText().toString().trim()+("/"+txtPname.getText().toString().trim()) + "/pizza.jpg");
 
                     if(image != null) {
                         ByteArrayOutputStream baos = new ByteArrayOutputStream();
@@ -211,7 +214,7 @@ public class AddPizzaActivity extends AppCompatActivity {
     }
 
     public void addPizza(FirebaseFirestore db, View view, String downloadUri){
-        CollectionReference dbPizza = db.collection("pizza-type");
+        CollectionReference dbPizza = db.collection("pizza");
         DocumentReference documentReference = dbPizza.document();
 
         PizzaModel pizzaModel = new PizzaModel(
